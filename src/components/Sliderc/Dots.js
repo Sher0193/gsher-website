@@ -34,7 +34,7 @@ Dots.propTypes = {
   wrapperProps: PropTypes.object,
   dotProps: PropTypes.object,
   slides: PropTypes.array,
-  activeSlide: PropTypes.number
+  activeSlide: PropTypes.number,
 };
 
 export default Dots;

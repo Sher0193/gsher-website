@@ -17,7 +17,7 @@ Container.propTypes = {
   marginX: PropTypes.string,
   className: PropTypes.string,
   element: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default Container;

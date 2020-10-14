@@ -1,6 +1,5 @@
 /** @jsx jsx */
-import React from 'react';
-import { css, jsx } from '@emotion/core';
+import { css, jsx } from "@emotion/core";
 
 const Dot = ({ active }) => (
   <span
@@ -9,14 +8,14 @@ const Dot = ({ active }) => (
       margin-right: 5px;
       cursor: pointer;
       border-radius: 50%;
-      background: ${active ? 'white' : '#232b2b'};
+      background: ${active ? "white" : "#232b2b"};
     `}
   />
-)
+);
 
 const Dots = ({ slides, activeIndex, handleClick }) => (
   <div
-    onClick = {handleClick}
+    onClick={handleClick}
     css={css`
       position: absolute;
       bottom: 25px;
@@ -30,6 +29,6 @@ const Dots = ({ slides, activeIndex, handleClick }) => (
       <Dot key={slide} active={activeIndex === i} />
     ))}
   </div>
-)
+);
 
-export default Dots
+export default Dots;

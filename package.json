@@ -8,9 +8,11 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.20.0",
     "classnames": "^2.2.6",
     "mobx": "^6.0.0",
     "mobx-react": "^7.0.0",
+    "prettier": "^2.1.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -22,7 +24,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier --write '{*,public/*,src/**/*}.{js,json,css,md}'",
+    "lint": "eslint src --fix; exit 0",
+    "fix": "npm run prettier && npm run lint"
   },
   "eslintConfig": {
     "extends": "react-app"

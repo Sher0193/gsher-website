@@ -55,7 +55,7 @@ const Slider = ({
   dotsProps,
   slideProps,
   sliderWrapperProps,
-  sliderProps
+  sliderProps,
 }) => {
   const [width, setWidth] = useState(0);
   const transitionRef = useRef();
@@ -71,14 +71,14 @@ const Slider = ({
   const SIZES = {
     small: "h-1/3",
     medium: "h-1/2",
-    large: "h-screen"
+    large: "h-screen",
   };
 
   const [state, setState] = useState({
     activeSlide: 0,
     translate: width,
     transition: 0.45,
-    _slides: [lastSlide, firstSlide, secondSlide]
+    _slides: [lastSlide, firstSlide, secondSlide],
   });
   const { activeSlide, translate, _slides, transition } = state;
 
@@ -99,7 +99,7 @@ const Slider = ({
       ...state,
       _slides: _slidesClone,
       transition: 0,
-      translate: width
+      translate: width,
     });
   };
 
@@ -107,31 +107,29 @@ const Slider = ({
     setState({
       ...state,
       translate: translate + width,
-      activeSlide: activeSlide === slides.length - 1 ? 0 : activeSlide + 1
+      activeSlide: activeSlide === slides.length - 1 ? 0 : activeSlide + 1,
     });
 
   const prevSlide = () =>
     setState({
       ...state,
       translate: 0,
-      activeSlide: activeSlide === 0 ? slides.length - 1 : activeSlide - 1
+      activeSlide: activeSlide === 0 ? slides.length - 1 : activeSlide - 1,
     });
 
+  const [toggle, running] = useIntervalWithStop(() => {
+    nextSlide();
+  }, slideInterval * 1000);
 
-   const [toggle, running] = useIntervalWithStop(() => {
-      nextSlide();
-   }, slideInterval * 1000);
-
-   togglePausePlay = toggle; 
-   isPlaying = running;
-
+  togglePausePlay = toggle;
+  isPlaying = running;
 
   useEffect(() => {
     setWidth(containerRef.current.clientWidth);
 
     transitionRef.current = smoothTransition;
     resizeRef.current = handleResize;
-  });
+  }, [smoothTransition, handleResize]);
 
   useEffect(() => {
     setState({ ...state, translate: containerRef.current.clientWidth });
@@ -152,11 +150,11 @@ const Slider = ({
       window.removeEventListener("transitionend", transitionEnd);
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [state]);
 
   useEffect(() => {
     if (transition === 0) setState({ ...state, transition: 0.45 });
-  }, [transition]);
+  }, [state, transition]);
 
   const Element = inContainer ? Container : "div";
 
@@ -220,7 +218,7 @@ Slider.propTypes = {
   dotsProps: PropTypes.object,
   slideProps: PropTypes.object,
   sliderWrapperProps: PropTypes.object,
-  sliderProps: PropTypes.object
+  sliderProps: PropTypes.object,
 };
 
 export default Slider;

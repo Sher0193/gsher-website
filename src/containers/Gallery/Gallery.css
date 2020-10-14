@@ -1,0 +1,26 @@
+.gallery {
+  background-color: white;
+  min-height: 100vh;
+  position: relative;
+  background-position: center;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+  padding-top: 70px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-bottom: 30px;
+}
+
+@media only screen and (max-device-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 100%));
+  }
+}

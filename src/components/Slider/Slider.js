@@ -1,87 +1,85 @@
 /** @jsx jsx */
-import React, { useState, useEffect, useRef } from 'react'
-import { css, jsx } from '@emotion/core'
-import SliderContent from './SliderContent'
-import Slide from './Slide'
-import Arrow from './Arrow'
-import Dots from './Dots'
+import { useState, useEffect, useRef } from "react";
+import { css, jsx } from "@emotion/core";
+import SliderContent from "./SliderContent";
+import Slide from "./Slide";
+import Arrow from "./Arrow";
+import Dots from "./Dots";
 
-const getWidth = () => window.innerWidth
+const getWidth = () => window.innerWidth;
 
 /**
  * @function Slider
  */
-const Slider = props => {
+const Slider = (props) => {
   const [state, setState] = useState({
     activeIndex: 0,
     translate: 0,
-    transition: 0.45
-  })
-  const { translate, transition, activeIndex } = state
-  
-  
-  const autoPlayRef = useRef()
-const resizeRef = useRef()
+    transition: 0.45,
+  });
+  const { translate, transition, activeIndex } = state;
 
-useEffect(() => {
-  autoPlayRef.current = nextSlide
-  resizeRef.current = handleResize
-})
+  const autoPlayRef = useRef();
+  const resizeRef = useRef();
 
-useEffect(() => {
-  const play = () => {
-    autoPlayRef.current()
-  }
+  useEffect(() => {
+    autoPlayRef.current = nextSlide;
+    resizeRef.current = handleResize;
+  });
 
-  const resize = () => {
-    resizeRef.current()
-  }
+  useEffect(() => {
+    const play = () => {
+      autoPlayRef.current();
+    };
 
-  const interval = setInterval(play, props.autoPlay * 1000)
-  const onResize = window.addEventListener('resize', resize)
+    const resize = () => {
+      resizeRef.current();
+    };
 
-  return () => {
-    clearInterval(interval)
-    window.removeEventListener('resize', onResize)
-  }
-}, [])
+    const interval = setInterval(play, props.autoPlay * 1000);
+    const onResize = window.addEventListener("resize", resize);
 
-const handleResize = () => {
-  setState({ ...state, activeIndex: 0, translate: 0, transition: 0.45 })
-}
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [props.autoPlay]);
 
+  const handleResize = () => {
+    setState({ ...state, activeIndex: 0, translate: 0, transition: 0.45 });
+  };
 
-  const nextSlide = e => {
+  const nextSlide = (e) => {
     if (activeIndex === props.slides.length - 1) {
       return setState({
         ...state,
         translate: 0,
-        activeIndex: 0
-      })
+        activeIndex: 0,
+      });
     }
 
     setState({
       ...state,
       activeIndex: activeIndex + 1,
-      translate: (activeIndex + 1) * getWidth()
-    })
-  }
+      translate: (activeIndex + 1) * getWidth(),
+    });
+  };
 
-   const prevSlide = e => {
+  const prevSlide = (e) => {
     if (activeIndex === 0) {
       return setState({
         ...state,
         translate: (props.slides.length - 1) * getWidth(),
-        activeIndex: props.slides.length - 1
-      })
+        activeIndex: props.slides.length - 1,
+      });
     }
 
     setState({
       ...state,
       activeIndex: activeIndex - 1,
-      translate: (activeIndex - 1) * getWidth()
-    })
-  }
+      translate: (activeIndex - 1) * getWidth(),
+    });
+  };
 
   return (
     <div css={SliderCSS}>
@@ -94,14 +92,18 @@ const handleResize = () => {
           <Slide key={slide + i} content={slide} />
         ))}
       </SliderContent>
-      
+
       <Arrow direction="left" handleClick={prevSlide} />
       <Arrow direction="right" handleClick={nextSlide} />
 
-      <Dots slides={props.slides} activeIndex={activeIndex} handleClick={() => console.log("dot click")}/>
+      <Dots
+        slides={props.slides}
+        activeIndex={activeIndex}
+        handleClick={() => console.log("dot click")}
+      />
     </div>
   );
-}
+};
 
 /*{!props.autoPlay && (
         <>
@@ -114,8 +116,8 @@ const handleResize = () => {
 
 Slider.defaultProps = {
   slides: [],
-  autoPlay: null
-}
+  autoPlay: null,
+};
 
 const SliderCSS = css`
   position: relative;
@@ -123,6 +125,6 @@ const SliderCSS = css`
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
-`
+`;
 
-export default Slider
+export default Slider;

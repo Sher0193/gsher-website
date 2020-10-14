@@ -1,17 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import Layout from './hoc/Layout/Layout';
-import { BrowserRouter } from 'react-router-dom';
+import Layout from "./hoc/Layout/Layout";
+import { BrowserRouter } from "react-router-dom";
 
-import Home from './containers/Home/Home';
-
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
-      <BrowserRouter>
-        <Layout/>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Layout />
+    </BrowserRouter>
   );
 }
 

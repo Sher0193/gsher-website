@@ -1,7 +1,10 @@
-body, html, #root, .App {
+body,
+html,
+#root,
+.App {
   #padding-top: 10px; /* Add a top margin to avoid content overlay */
   height: 100%;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #777;
-  background-color: #2F4F4F;
+  background-color: #2f4f4f;
 }

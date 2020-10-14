@@ -1,92 +1,79 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import React from "react";
+import { observer } from "mobx-react";
+import { Route } from "react-router-dom";
 
-import UserStore from '../../stores/UserStore';
-import LoginForm from '../../components/Login/LoginForm/LoginForm';
-import SubmitButton from '../../components/Login/SubmitButton/SubmitButton';
+import UserStore from "../../stores/UserStore";
+import LoginForm from "../../components/Login/LoginForm/LoginForm";
 
-import './Admin.css';
+import Sidenav from "../../components/UI/Sidenav/Sidenav";
+import PostForm from "../../components/Admin/PostForm/PostForm";
+
+import config from "../../config.json";
+
+import "./Admin.css";
 
 class Admin extends React.Component {
-    
-    async componentDidMount() {
-        try {
-            let res = await fetch('/isLoggedIn', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            });
-            
-            let result = await res.json();
-            
-            if (result && result.success) {
-                UserStore.loading = false;
-                UserStore.isLoggedIn = true;
-                UserStore.username = result.username;
-            } else {
-                UserStore.loading = false;
-                UserStore.isLoggedIn = false;
-            }
-        } catch(e) {
-            UserStore.loading = false;
-            UserStore.isLoggedIn = false;
-        }
+  async componentDidMount() {
+    try {
+      console.log(config.server);
+      let res = await fetch(config.server + "isLoggedIn", {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        credentials: "include",
+      });
+
+      let result = await res.json();
+
+      if (result && result.success) {
+        UserStore.loading = false;
+        UserStore.isLoggedIn = true;
+        UserStore.username = result.username;
+      } else {
+        UserStore.loading = false;
+        UserStore.isLoggedIn = false;
+      }
+    } catch (e) {
+      UserStore.loading = false;
+      UserStore.isLoggedIn = false;
     }
-    
-    async doLogout() {
-        try {
-            let res = await fetch('/logout', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            });
-            
-            let result = await res.json();
-            
-            if (result && result.success) {
-                UserStore.isLoggedIn = false;
-                UserStore.username = '';
-            }
-        } catch(e) {
-            console.log(e);
-        }
+  }
+
+  onSubmit() {}
+
+  /*<div className="container">Welcome, {UserStore.username}</div>*/
+
+  render() {
+    if (UserStore.loading) {
+      return <body>Loading, please wait...</body>;
+    } else {
+      if (UserStore.isLoggedIn) {
+        return (
+          <div className="App">
+            <Route exact path={"/admin"}>
+              <div className="container">Welcome, {UserStore.username}</div>
+            </Route>
+            <Route exact path={"/admin/posts/new"}>
+              <div className="container">
+                <PostForm onSubmit={this.onSubmit} />
+              </div>
+            </Route>
+            <Sidenav />
+          </div>
+        );
+      } else {
+        return (
+          <div className="App">
+            <div className="container">
+              <LoginForm />
+            </div>
+          </div>
+        );
+      }
     }
-    
-    render() {
-        if (UserStore.loading) {
-            return (
-                <body>
-                    Loading, please wait...
-                </body>
-            );
-        } else {
-            if (UserStore.isLoggedIn) {
-                return (
-                    <body> 
-                    <div className='container'>
-                        Welcome {UserStore.username}
-                        <SubmitButton
-                            text={'Log out'}
-                            disabled={false}
-                            onClick={ () => this.doLogout() }
-                        />
-                         </div>
-                    </body>
-                );
-            } else {
-                return (
-                    <body>
-                        <div className='container'>
-                            <LoginForm />
-                        </div>
-                    </body>
-                );
-            }
-        }
-    }
+  }
 }
 export default observer(Admin);

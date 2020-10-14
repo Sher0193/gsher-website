@@ -28,7 +28,7 @@ SliderContent.propTypes = {
   transition: PropTypes.number,
   width: PropTypes.number,
   children: PropTypes.node,
-  wrapperProps: PropTypes.object
+  wrapperProps: PropTypes.object,
 };
 
 export default SliderContent;

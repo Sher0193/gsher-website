@@ -85,7 +85,7 @@ Arrow.propTypes = {
   direction: PropTypes.string,
   playState: PropTypes.bool,
   imgProps: PropTypes.object,
-  wrapperProps: PropTypes.object
+  wrapperProps: PropTypes.object,
 };
 
 export default Arrow;
