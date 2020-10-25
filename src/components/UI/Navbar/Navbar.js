@@ -1,7 +1,9 @@
 import React from "react";
 import "./Navbar.css";
 
-const top = { top: "-50px" };
+import sig from "../../../img/website-logo.png";
+
+// const top = { top: "-50px" };
 const scrolled = { top: "0px" };
 
 class Navbar extends React.Component {
@@ -23,14 +25,15 @@ class Navbar extends React.Component {
 
   handleScroll = (e) => {
     //if (path === "/") {
-    if (window.scrollY < 50) {
-      this.setState({ scrollStyle: scrolled });
-    } else if (window.scrollY > 50) {
-      this.setState({ scrollStyle: top });
-    }
+    //     if (window.scrollY < 50) {
+    //       this.setState({ scrollStyle: scrolled });
+    //     } else if (window.scrollY > 50) {
+    //       this.setState({ scrollStyle: top });
+    //     }
     //}
   };
 
+  //   <img src={sig} alt=""/>
   render() {
     return (
       <div
@@ -38,10 +41,23 @@ class Navbar extends React.Component {
         onScroll={this.handleScroll}
         style={this.state.scrollStyle}
       >
-        <a href="/">Home</a>
-        <a href="/blog">Blog</a>
-        <a href="/contact">Contact</a>
-        <a href="/gallery">Gallery</a>
+        <a href="/">
+          <img height="65" src={sig} alt="" />
+        </a>
+        <div className="links">
+          <a className="right" href="/bio">
+            Bio
+          </a>
+          <a className="right" href="/contact">
+            Contact
+          </a>
+          <a className="right" href="/gallery">
+            Gallery
+          </a>
+          <button className="icon" onclick="myFunction()">
+            Menu
+          </button>
+        </div>
       </div>
     );
   }

@@ -1,0 +1,37 @@
+.postsContainer {
+  min-height: 100vh;
+  width: 95%;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding-top: 20px;
+  color: black;
+  padding-left: 5%;
+  font-size: 20px;
+}
+
+.postsContainer table,
+.postsContainer th,
+.postsContainer td {
+  border: 1px solid black;
+}
+
+.postsContainer table {
+  width: 100%;
+}
+
+.tableContainer {
+  width: 50%;
+  min-width: 300px;
+}
+
+a.button,
+.postsContainer button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+
+  float: right;
+
+  text-decoration: none;
+  color: initial;
+}

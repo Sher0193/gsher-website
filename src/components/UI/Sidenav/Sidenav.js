@@ -33,7 +33,6 @@ export default class Sidenav extends React.Component {
       <div className="sidenav">
         <a href="/admin">Admin</a>
         <a href="/admin/site">Site</a>
-        <a href="/admin/posts/new">New Post</a>
         <a href="/admin/posts">Posts</a>
         <a href="/admin/blog">Blog</a>
         <SubmitButton

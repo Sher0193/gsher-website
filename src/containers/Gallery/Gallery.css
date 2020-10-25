@@ -8,15 +8,67 @@
   background-size: cover;
 }
 
+.load-container {
+  background-color: white;
+  min-height: 100vh;
+  position: relative;
+  background-position: center;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.spinner {
+  padding-top: 20%;
+}
+
+.divider {
+  padding-top: 25px;
+}
+
+.gallery .react-select {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
   align-items: stretch;
-  padding-top: 70px;
   margin-left: 50px;
   margin-right: 50px;
+  padding-top: 30px;
   padding-bottom: 30px;
+  max-width: 100%;
+  transition: all ease 1s;
+}
+
+.expander {
+  position: relative;
+  float: right;
+  overflow: hidden;
+  height: 100%;
+  max-width: 0%;
+  #width: 0%;
+  right: 0;
+  background: #c6c6c6;
+  z-index: 1;
+  transition: all ease 1s;
+  justify-content: center;
+}
+
+.expander-expanded {
+  max-width: calc(100% - 400px);
+}
+
+.grid-shrink {
+  padding-right: 50px;
+  max-height: calc(100vh - 100px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  #max-width: 300px;
 }
 
 @media only screen and (max-device-width: 1024px) {

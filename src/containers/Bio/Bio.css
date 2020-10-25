@@ -1,0 +1,87 @@
+.bio {
+  background-color: white;
+  min-height: 100%;
+  #padding-bottom: 75px;
+  position: relative;
+  background-position: center;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+}
+
+.bio .block {
+  position: relative;
+  
+  padding-left: 50px;
+  padding-top: 10px;
+}
+
+.bio .heading {
+  #position: absolute;
+  #float: left;
+  #width: 25%;
+  height: 100%;
+  #background-color: #8c8bac;
+  #color: #ccccff;
+  color: black;
+  #text-align: center;
+  font-size: xx-large;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 25px;
+}
+
+.bio .heading h1 {
+  #text-align: center;
+}
+
+.bio .text {
+  #width: 75%;
+    overflow: hidden;
+  padding-left: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  color: black;
+  line-height: 12px;
+}
+.bio .text .element {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.bio .text h4 {
+  font-size: large;
+  padding-left: 10px;
+  font-weight: bold;
+  line-height: 20px;
+  
+}
+
+.bio .text p {
+  margin-top: -15px;
+  font-size: small;
+  padding-left: 10px;
+  line-height: 12px;
+}
+
+.bio .img-container {
+  float: left;
+  margin: 5px;
+  padding-right: 25px;
+}
+
+@media screen and (max-width: 600px) {
+ .bio .img-container {
+
+  float: none;
+  margin: 0px;
+
+  padding: 0px;
+}
+.bio img {
+    display: block;
+      margin-left: auto;
+  margin-right: auto;
+}
+}

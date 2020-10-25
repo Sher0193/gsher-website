@@ -1,15 +1,25 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 
-const Slide = ({ content }) => (
+const Slide = ({ content, index, activeIndex, render }) => (
   <div
     css={css`
-      height: 100%;
+      ${render ? `background-image: url("${content}")` : ``};
       width: 100%;
-      background-image: url("${content}");
-      background-size: cover;
-      background-repeat: no-repeat;
+      height: 100%;
+      display: flex;
+      position: absolute;
+      top: 0;
+      transform: ${activeIndex === index ? `none` : `scale(0.97)`};
+      -webkit-transform: ${activeIndex === index ? `none` : `scale(0.97)`};
+      opacity: ${activeIndex === index ? 1 : 0};
+      transition: all 1s ease-in-out;
+      #position: relative;
+      #background-attachment: fixed;
       background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      ${activeIndex === index ? `z-index: 1;` : ``}
     `}
   />
 );

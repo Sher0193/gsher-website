@@ -1,5 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
-
+.home {
+  height: 100vh;
+  margin-bottom: -75px;
+}
 .bgimg-1,
 .bgimg-2,
 .bgimg-3 {
@@ -11,7 +13,8 @@
 }
 
 .bgimg-1 {
-  min-height: 100%;
+  position: relative;
+  height: calc(100% - 75px);
 }
 
 .bgimg-2 {
@@ -27,9 +30,10 @@
   text-align: center;
   color: #000;
   text-shadow: 2px 2px #000;
-  font-size: 550%;
+  font-size: 6vw;
   font-weight: 500;
   color: #fff;
+  z-index: 2;
 }
 
 .text-break {
@@ -56,8 +60,6 @@ h3 {
     background-attachment: scroll;
   }
   .caption {
-    top: 30%;
-    font-size: 250%;
   }
   .text-break {
     padding: 50px 10px;

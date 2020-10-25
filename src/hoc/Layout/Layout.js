@@ -8,21 +8,23 @@ import Home from "../../containers/Home/Home";
 import Admin from "../../containers/Admin/Admin";
 import Contact from "../../containers/Contact/Contact";
 import Gallery from "../../containers/Gallery/Gallery";
+import Bio from "../../containers/Bio/Bio";
 
 export default class Layout extends Component {
   render() {
     return (
       <div className="App">
+        <Navbar />
         <div>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/admin*" exact component={Admin} />
             <Route path="/contact" exact component={Contact} />
             <Route path="/gallery" exact component={Gallery} />
+            <Route path="/bio" exact component={Bio} />
           </Switch>
         </div>
         <Footer />
-        <Navbar />
       </div>
     );
   }

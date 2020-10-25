@@ -32,16 +32,16 @@ const Slider = (props) => {
       autoPlayRef.current();
     };
 
-    const resize = () => {
-      resizeRef.current();
-    };
+    //     const resize = () => {
+    //       resizeRef.current();
+    //     };
 
     const interval = setInterval(play, props.autoPlay * 1000);
-    const onResize = window.addEventListener("resize", resize);
+    //const onResize = window.addEventListener("resize", resize);
 
     return () => {
       clearInterval(interval);
-      window.removeEventListener("resize", onResize);
+      //window.removeEventListener("resize", onResize);
     };
   }, [props.autoPlay]);
 
@@ -81,17 +81,40 @@ const Slider = (props) => {
     });
   };
 
+  const render = (index) => {
+    if (activeIndex === props.slides.length - 1) {
+      return index === 0 || index >= activeIndex - 1;
+    } else if (activeIndex === 0) {
+      return index === props.slides.length - 1 || index <= activeIndex + 1;
+    } else {
+      return index >= activeIndex - 1 && index <= activeIndex + 1;
+    }
+  };
+
+  const clickDot = (index) => {
+    console.log(index);
+    setState({ activeIndex: index });
+  };
+
   return (
     <div css={SliderCSS}>
-      <SliderContent
-        translate={translate}
-        transition={transition}
-        width={getWidth() * props.slides.length}
-      >
-        {props.slides.map((slide, i) => (
-          <Slide key={slide + i} content={slide} />
-        ))}
-      </SliderContent>
+      <a href="/gallery">
+        <SliderContent
+          translate={translate}
+          transition={transition}
+          width={getWidth() * props.slides.length}
+        >
+          {props.slides.map((slide, i) => (
+            <Slide
+              key={slide + i}
+              content={slide}
+              activeIndex={activeIndex}
+              index={i}
+              render={render(i)}
+            />
+          ))}
+        </SliderContent>
+      </a>
 
       <Arrow direction="left" handleClick={prevSlide} />
       <Arrow direction="right" handleClick={nextSlide} />
@@ -99,7 +122,7 @@ const Slider = (props) => {
       <Dots
         slides={props.slides}
         activeIndex={activeIndex}
-        handleClick={() => console.log("dot click")}
+        dotHandler={clickDot}
       />
     </div>
   );
@@ -121,7 +144,7 @@ Slider.defaultProps = {
 
 const SliderCSS = css`
   position: relative;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   margin: 0 auto;
   overflow: hidden;

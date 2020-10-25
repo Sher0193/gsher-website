@@ -3,7 +3,7 @@
 .postForm input[type="number"],
 .postForm input[type="file"],
 .postForm input[type="date"],
-.postForm select {
+.postForm select .postForm {
   width: 35%;
   min-width: 200px;
   padding: 8px 20px;
@@ -12,6 +12,10 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.react-select {
+  width: 35%;
 }
 
 .postForm .radioBtn {

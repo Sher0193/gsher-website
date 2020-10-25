@@ -7,6 +7,7 @@ import LoginForm from "../../components/Login/LoginForm/LoginForm";
 
 import Sidenav from "../../components/UI/Sidenav/Sidenav";
 import PostForm from "../../components/Admin/PostForm/PostForm";
+import Posts from "../../components/Admin/Posts/Posts";
 
 import config from "../../config.json";
 
@@ -48,7 +49,7 @@ class Admin extends React.Component {
 
   render() {
     if (UserStore.loading) {
-      return <body>Loading, please wait...</body>;
+      return <div className="App">Loading, please wait...</div>;
     } else {
       if (UserStore.isLoggedIn) {
         return (
@@ -56,9 +57,19 @@ class Admin extends React.Component {
             <Route exact path={"/admin"}>
               <div className="container">Welcome, {UserStore.username}</div>
             </Route>
+            <Route exact path={"/admin/posts/edit"}>
+              <div className="container">
+                <PostForm params={this.props.location.search} />
+              </div>
+            </Route>
             <Route exact path={"/admin/posts/new"}>
               <div className="container">
-                <PostForm onSubmit={this.onSubmit} />
+                <PostForm />
+              </div>
+            </Route>
+            <Route exact path={"/admin/posts/"}>
+              <div className="container">
+                <Posts />
               </div>
             </Route>
             <Sidenav />
