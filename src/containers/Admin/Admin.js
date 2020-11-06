@@ -8,6 +8,7 @@ import LoginForm from "../../components/Login/LoginForm/LoginForm";
 import Sidenav from "../../components/UI/Sidenav/Sidenav";
 import PostForm from "../../components/Admin/PostForm/PostForm";
 import Posts from "../../components/Admin/Posts/Posts";
+import Site from "../../components/Admin/Site/Site";
 
 import config from "../../config.json";
 
@@ -70,6 +71,11 @@ class Admin extends React.Component {
             <Route exact path={"/admin/posts/"}>
               <div className="container">
                 <Posts />
+              </div>
+            </Route>
+            <Route exact path={"/admin/site/"}>
+              <div className="container">
+                <Site />
               </div>
             </Route>
             <Sidenav />

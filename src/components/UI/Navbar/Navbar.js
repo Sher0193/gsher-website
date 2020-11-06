@@ -11,6 +11,7 @@ class Navbar extends React.Component {
     super();
     this.state = {
       scrollStyle: scrolled,
+      menuClicked: false,
     };
 
     this.handleScroll = this.handleScroll.bind(this);
@@ -33,8 +34,18 @@ class Navbar extends React.Component {
     //}
   };
 
+  handleMenuClick = () => {
+    let toggle = !this.state.menuClicked;
+    this.setState({ menuClicked: toggle });
+    console.log("fuck");
+  };
+
   //   <img src={sig} alt=""/>
   render() {
+    let linksClass = this.state.menuClicked ? "right responsive" : "right";
+    let iconClass = this.state.menuClicked ? "icon responsive" : "icon";
+    let ddClass = this.state.menuClicked ? "dropdown" : "none";
+    console.log(linksClass);
     return (
       <div
         className="navbar"
@@ -45,18 +56,21 @@ class Navbar extends React.Component {
           <img height="65" src={sig} alt="" />
         </a>
         <div className="links">
-          <a className="right" href="/bio">
-            Bio
-          </a>
-          <a className="right" href="/contact">
-            Contact
-          </a>
-          <a className="right" href="/gallery">
-            Gallery
-          </a>
-          <button className="icon" onclick="myFunction()">
+          <button className={iconClass} onClick={this.handleMenuClick}>
             Menu
           </button>
+          <div className={ddClass}>
+                      <a className={linksClass} href="/gallery">
+              Gallery
+            </a>
+                        <a className={linksClass} href="/bio">
+              Bio
+            </a>
+                      <a className={linksClass} href="/contact">
+              Contact
+            </a>
+
+          </div>
         </div>
       </div>
     );

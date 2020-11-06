@@ -39,7 +39,7 @@ export default class Home extends React.Component {
     let result = await featuredImages();
     if (result && result.success) {
       for (let i = 0; i < result.data.length; i++) {
-        imgData.push(config.server + "img/featured/" + result.data[i]);
+        imgData.push(config.server + "img/" + result.data[i].link);
       }
     }
     this.setState({

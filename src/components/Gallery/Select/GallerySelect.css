@@ -1,0 +1,13 @@
+.react-select {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  opacity: 0;
+  transition: opacity ease 1s;
+  z-index: 1;
+}
+
+.react-select-loaded {
+  opacity: 1;
+}

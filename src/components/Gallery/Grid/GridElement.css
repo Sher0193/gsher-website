@@ -48,6 +48,7 @@
   background-color: red;
   color: white;
   opacity: 0;
+  font-weight: 600;
 }
 
 .text-container p {
@@ -64,6 +65,8 @@
 .post img {
   position: relative;
   display: block;
+  margin-top: auto;
+  margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
   max-width: 100%;

@@ -50,7 +50,7 @@ export const deleteImage = async function (filename) {
 
 export const featuredImages = async function () {
   try {
-    let res = await fetch(config.server + "featuredimages", {
+    let res = await fetch(config.server + "api/posts?featured=true", {
       method: "get",
       headers: {
         Accept: "application/json",
@@ -133,11 +133,11 @@ export const getPost = async function (id) {
   }
 };
 
-export const getPosts = async function (page, orderBy, tags) {
+export const getPosts = async function (paginate, orderBy, tags) {
   try {
     let query = config.server + "api/posts";
     let params = [];
-    if (page) params.push("page=" + page);
+    if (paginate) params.push("paginate=" + paginate);
     if (orderBy) params.push("orderBy=" + orderBy);
     if (tags) {
       for (let i = 0; i < tags.length; i++) {
@@ -175,7 +175,8 @@ export const updatePost = async function (
   sold,
   date,
   filename,
-  categories
+  categories,
+  featured
 ) {
   try {
     let res = await fetch(config.server + "api/posts/" + id, {
@@ -195,6 +196,7 @@ export const updatePost = async function (
         date: date,
         filename: filename,
         categories: categories,
+        featured: featured,
       }),
     });
     let result = await res.json();
@@ -343,3 +345,45 @@ export const deleteCategory = async function (id) {
     return false;
   }
 };
+
+/*************************************** SITE ***************************************/
+
+export const getAbout = async function () {
+try {
+    let res = await fetch(config.server + "api/site/data/about", {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    let result = await res.json();
+    if (result === null || !result.success) {
+      return false;
+    }
+    return result;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+}
+
+export const getStatement = async function () {
+try {
+    let res = await fetch(config.server + "api/site/data/statement", {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    let result = await res.json();
+    if (result === null || !result.success) {
+      return false;
+    }
+    return result;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+}

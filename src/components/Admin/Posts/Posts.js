@@ -3,6 +3,7 @@ import React from "react";
 import PostRow from "./PostRow";
 
 import {
+  updatePost,
   getPost,
   getPosts,
   deletePost,
@@ -98,9 +99,30 @@ export default class Posts extends React.Component {
     }
   }
 
+  async toggleFeature(post) {
+    let updateResult = await updatePost(
+      post.id,
+      post.name,
+      post.dimensions,
+      post.meta,
+      post.price,
+      post.sold,
+      post.date_painted.substring(0, 10),
+      post.link,
+      null,
+      post.featured === 1 ? 0 : 1
+    );
+    if (updateResult === null || !updateResult.success) {
+      return;
+    }
+    this.setState({ postData: null });
+  }
+
   generatePostRows(data) {
     return data.map((p, k) => (
       <PostRow
+        handleFeature={() => this.toggleFeature(p)}
+        featured={p.featured}
         key={p.id}
         postId={p.id}
         postName={p.name}
@@ -157,6 +179,7 @@ export default class Posts extends React.Component {
                   <th>Thumbnail</th>
                   <th>Edit</th>
                   <th>Delete</th>
+                  <th>Feature</th>
                 </tr>
                 {this.generatePostRows(this.state.postData)}
               </tbody>

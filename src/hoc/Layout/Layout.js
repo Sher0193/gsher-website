@@ -14,7 +14,9 @@ export default class Layout extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
+        <div>
+          <Navbar />
+        </div>
         <div>
           <Switch>
             <Route path="/" exact component={Home} />
@@ -24,7 +26,9 @@ export default class Layout extends Component {
             <Route path="/bio" exact component={Bio} />
           </Switch>
         </div>
-        <Footer />
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }

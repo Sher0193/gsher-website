@@ -21,6 +21,16 @@ const PostRow = (props) => (
     <td>
       <button onClick={props.handleClick}>Delete</button>
     </td>
+    <td>
+      <button
+        className={
+          props.featured === 1 ? "unfeature-btn fbtn" : "feature-btn fbtn"
+        }
+        onClick={props.handleFeature}
+      >
+        {props.featured === 1 ? "Unfeature" : "Feature"}
+      </button>
+    </td>
   </tr>
 );
 

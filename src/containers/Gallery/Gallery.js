@@ -3,14 +3,13 @@ import "./Gallery.css";
 
 import GridElement from "../../components/Gallery/Grid/GridElement";
 import Post from "../../components/Gallery/Post/Post";
+import GallerySelect from "../../components/Gallery/Select/GallerySelect";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import PageNavigation from "../../components/Gallery/PageNavigation/PageNavigation";
 
 import { getPosts, getCategories } from "../../utils/Api";
 
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
-
-const animatedComponents = makeAnimated();
+import { populatePages, arraysEqual } from "../../utils/Utils";
 
 export default class Gallery extends React.Component {
   constructor() {
@@ -21,21 +20,46 @@ export default class Gallery extends React.Component {
       imageLoaded: false,
       catData: null,
       catValues: null,
+      curPage: 1,
+      endPage: -1,
+      selected: null,
     };
   }
 
   componentDidMount() {
+    console.log("mount");
     this.update();
   }
   componentDidUpdate() {
+    console.log("update");
     this.update();
   }
 
   update() {
-    if (this.state.data === null) {
-      this.apiPosts();
-    } else if (this.state.catData === null) {
+    if (this.state.catData === null) {
       this.apiCategories();
+    } else {
+      this.checkParams();
+    }
+  }
+
+  checkParams() {
+    const params = new URLSearchParams(this.props.location.search);
+
+    let page = params.has("page") ? parseInt(params.get("page")) : 1;
+    let image = params.has("image") ? parseInt(params.get("image")) : null;
+    let tags = params.has("tag") ? params.getAll("tag") : null;
+    if (this.state.data === null) {
+      this.apiPosts(tags);
+    } else if (
+      image !== this.state.activeIndex ||
+      page !== this.state.curPage ||
+      !arraysEqual(tags, this.state.catValues)
+    ) {
+      let data = !arraysEqual(tags, this.state.catValues)
+        ? null
+        : this.state.data;
+      this.setGallery(page, tags, data, image);
     }
   }
 
@@ -46,20 +70,10 @@ export default class Gallery extends React.Component {
     return null;
   }
 
-  async apiPosts() {
-    let catValues = [];
-    if (this.state.catValues) {
-      for (let i = 0; i < this.state.catValues.length; i++) {
-        catValues.push(this.state.catValues[i].value);
-      }
-    }
-    let result = await getPosts(
-      1,
-      null,
-      catValues.length > 0 ? catValues : null
-    );
+  async apiPosts(tags) {
+    let result = await getPosts(true, null, tags);
     if (result && result.success) {
-      this.setState({ data: result.data });
+      this.setGallery(null, tags, result.data, null);
     } else {
       this.setState({ data: [] });
     }
@@ -85,11 +99,36 @@ export default class Gallery extends React.Component {
   }
 
   handleMultiSelectChange = (selectedOptions) => {
-    this.setState({
-      catValues: selectedOptions,
-      data: null,
+    const params = new URLSearchParams(this.props.location.search);
+    params.delete("page");
+    params.delete("tag");
+    if (selectedOptions) {
+      for (let i = 0; i < selectedOptions.length; i++) {
+        params.append("tag", selectedOptions[i].value);
+      }
+    }
+    this.props.history.push({
+      pathname: "/gallery",
+      search: params.toString(),
     });
-    console.log(this.state.catValues);
+  };
+
+  backToGallery = () => {
+    const params = new URLSearchParams(this.props.location.search);
+    params.delete("image");
+    this.props.history.push({
+      pathname: "/gallery",
+      search: params.toString(),
+    });
+  };
+
+  handlePostClick = (idx) => {
+    const params = new URLSearchParams(this.props.location.search);
+    params.set("image", idx);
+    this.props.history.push({
+      pathname: "/gallery",
+      search: params.toString(),
+    });
   };
 
   setIndex(idx) {
@@ -102,8 +141,63 @@ export default class Gallery extends React.Component {
     }
   }
 
+  handlePageClick = (page) => {
+    const params = new URLSearchParams(this.props.location.search);
+    params.set("page", page);
+    this.props.history.push({
+      pathname: "/gallery",
+      search: params.toString(),
+    });
+  };
+
+  getCatdataById(id) {
+    for (let i = 0; i < this.state.catData.length; i++) {
+      if (this.state.catData[i].value === id) {
+        return this.state.catData[i];
+      }
+    }
+    return null;
+  }
+
+  setGallery(page, tags, data, idx) {
+    console.log("page : " + page + "\ntags: " + tags);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+    page = page === null ? this.state.curPage : page;
+    let endPage = data === null ? -1 : data.length;
+    let selected = [];
+    if (tags !== null) {
+      for (let i = 0; i < tags.length; i++) {
+        let catData = this.getCatdataById(parseInt(tags[i]));
+        if (catData !== null) {
+          selected.push({ label: catData.label, value: catData.value });
+        }
+      }
+    }
+    this.setState({
+      activeIndex: idx,
+      curPage: page,
+      catValues: tags,
+      data: data,
+      endPage: endPage,
+      selected: selected,
+    });
+  }
+
+  setPage(page) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+    this.setState({ curPage: page });
+  }
+
   generatePosts(data) {
-    return data.map((p, k) => (
+    return data[this.state.curPage - 1].map((p, k) => (
       <GridElement
         key={p.id}
         id={p.id}
@@ -113,19 +207,21 @@ export default class Gallery extends React.Component {
         sold={p.sold}
         meta={p.meta}
         price={p.price}
-        handleClick={() => this.setIndex(k)}
+        handleClick={() => this.handlePostClick(k)}
       />
     ));
   }
   //{this.generatePosts(this.state.data)}
 
   render() {
-    if (this.state.activeIndex !== null) {
-      let post = this.state.data[this.state.activeIndex];
+    if (this.state.activeIndex !== null && this.state.data !== null) {
+      let post = this.state.data[this.state.curPage - 1][
+        this.state.activeIndex
+      ];
       return (
         <div className="App">
           <Post
-            destroy={() => this.setIndex(null)}
+            destroy={this.backToGallery}
             loadedHook={() => this.setImageLoaded(true)}
             loaded={this.state.imageLoaded}
             img={post.link}
@@ -141,17 +237,18 @@ export default class Gallery extends React.Component {
         <div className="App">
           <div className="gallery">
             <div className="divider"></div>
-            <Select
-              loadingMessage="Loading..."
-              placeholder="Collections..."
+            <GallerySelect
               onChange={this.handleMultiSelectChange}
-              value={this.state.catValues}
-              className="react-select"
-              isMulti={true}
               options={this.state.catData}
-              components={animatedComponents}
+              value={this.state.selected}
             />
             <div className={"grid"}>{this.generatePosts(this.state.data)}</div>
+            <PageNavigation
+              page={this.state.curPage}
+              pages={populatePages}
+              endPage={this.state.endPage}
+              click={this.handlePageClick}
+            />
           </div>
         </div>
       );

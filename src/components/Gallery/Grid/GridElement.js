@@ -21,7 +21,11 @@ export default class GridElement extends React.Component {
           <p>
             {this.props.dimensions}, {this.props.meta}
           </p>
-          {this.props.sold ? <span className="badge">SOLD</span> : <p>${this.props.price}</p>}
+          {this.props.sold ? (
+            <span className="badge">SOLD</span>
+          ) : (
+            <p>${this.props.price}</p>
+          )}
         </div>
         <img
           onLoad={() => this.setState({ loaded: true })}

@@ -16,8 +16,9 @@ const Slider = (props) => {
     activeIndex: 0,
     translate: 0,
     transition: 0.45,
+    loaded: false,
   });
-  const { translate, transition, activeIndex } = state;
+  const { loaded, translate, transition, activeIndex } = state;
 
   const autoPlayRef = useRef();
   const resizeRef = useRef();
@@ -96,6 +97,13 @@ const Slider = (props) => {
     setState({ activeIndex: index });
   };
 
+  const onLoad = () => {
+    setState({
+      ...state,
+      loaded: true,
+    });
+  };
+
   return (
     <div css={SliderCSS}>
       <a href="/gallery">
@@ -111,6 +119,8 @@ const Slider = (props) => {
               activeIndex={activeIndex}
               index={i}
               render={render(i)}
+              onLoad={!loaded ? onLoad : ``}
+              loaded={loaded}
             />
           ))}
         </SliderContent>

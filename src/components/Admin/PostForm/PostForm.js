@@ -35,6 +35,7 @@ export default class PostForm extends React.Component {
       btnDisabled: false,
       editForm: false,
       catValues: null,
+      featuredValue: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -104,6 +105,7 @@ export default class PostForm extends React.Component {
       soldValue: data.sold === 1 ? "true" : "false",
       dateValue: data.date_painted.substring(0, 10),
       catValues: values,
+      featuredValue: data.featured,
     });
   }
 
@@ -182,10 +184,11 @@ export default class PostForm extends React.Component {
         this.state.dimValue,
         this.state.metaValue,
         this.state.priceValue,
-        this.state.soldValue,
+        this.state.soldValue === "true" ? 1 : 0,
         this.state.dateValue,
         filename,
-        catValues
+        catValues,
+        this.state.featuredValue
       );
       if (!updateResult) {
         alert("Issue updating database entry.");
@@ -214,7 +217,7 @@ export default class PostForm extends React.Component {
         this.state.dimValue,
         this.state.metaValue,
         this.state.priceValue,
-        this.state.soldValue,
+        this.state.soldValue === "true" ? 1 : 0,
         this.state.dateValue,
         filename,
         catValues
@@ -282,7 +285,7 @@ export default class PostForm extends React.Component {
             <Select
               onChange={this.handleMultiSelectChange}
               value={this.state.catValues}
-              className="react-select"
+              className="admin-react-select"
               isMulti={true}
               options={this.state.catData}
               components={animatedComponents}

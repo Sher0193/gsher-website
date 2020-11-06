@@ -1,0 +1,99 @@
+.contact {
+  background-color: white;
+  min-height: calc(100vh - 82px);
+  #padding-bottom: 75px;
+  position: relative;
+  background-position: center;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+}
+
+.contact .form {
+  background-color: white;
+  display: block;
+  text-align: center;
+}
+.contact .form form {
+  #border-style: solid;
+  width: 75%;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.contact .form .form-title {
+  font-weight: 600;
+  padding-bottom: 15px;
+}
+
+.contact .form .form-subtitle {
+  font-size: small;
+  font-weight: 300;
+  padding-bottom: 50px;
+}
+
+.contact .form .form-links {
+  font-weight: 200;
+  font-size: small;
+  #padding-left: 5px;
+  padding-bottom: 30px;
+}
+
+.contact .form a {
+  text-decoration: none;
+  color: black;
+  font-weight: 400;
+  transition: color ease 0.2s;
+}
+
+.contact .form a:hover {
+  color: grey;
+}
+
+.contact .form label {
+  #margin-left: 5px;
+  font-weight: 400;
+  font-size: small;
+}
+
+.contact .form input[type="text"],
+.contact .form textarea {
+  width: 100%;
+  min-height: 45px;
+  padding: 8px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #fafafa;
+  transition: background-color ease 0.2s;
+}
+.contact .form textarea {
+  max-width: 100%;
+  min-height: 100px;
+}
+
+.contact .form input[type="text"]:focus,
+.contact .form textarea:focus {
+  background-color: white;
+}
+
+.contact .form .contact-submitBtn {
+  background-color: #171717;
+  color: white;
+  padding: 5px 20px 5px 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color ease 0.2s;
+  font-weight: 600;
+}
+
+.contact .form .contact-submitBtn:hover {
+  background-color: #454545;
+}

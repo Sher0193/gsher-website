@@ -34,7 +34,6 @@ export default class Sidenav extends React.Component {
         <a href="/admin">Admin</a>
         <a href="/admin/site">Site</a>
         <a href="/admin/posts">Posts</a>
-        <a href="/admin/blog">Blog</a>
         <SubmitButton
           text={"Log out"}
           disabled={false}
