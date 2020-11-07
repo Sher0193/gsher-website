@@ -38,14 +38,13 @@ class Navbar extends React.Component {
   handleMenuClick = () => {
     let toggle = !this.state.menuClicked;
     this.setState({ menuClicked: toggle });
-    console.log("fuck");
   };
 
   //   <img src={sig} alt=""/>
   render() {
     let linksClass = this.state.menuClicked ? "right responsive" : "right";
     let iconClass = this.state.menuClicked ? "icon responsive" : "icon";
-    let ddClass = this.state.menuClicked ? "dropdown" : "none";
+    let ddClass = this.state.menuClicked ? "dropdown dropdown-show" : "dropdown";
     console.log(linksClass);
     return (
       <div
