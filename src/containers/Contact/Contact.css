@@ -1,6 +1,6 @@
 .contact {
   background-color: white;
-  min-height: calc(100vh - 82px);
+  min-height: calc(100vh - 70px);
   #padding-bottom: 75px;
   position: relative;
   background-position: center;
@@ -8,6 +8,14 @@
   background-repeat: no-repeat;
   background-size: cover;
   display: block;
+}
+
+.contact .heading-container {
+  width: 75%;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }
 
 .contact .form {
@@ -24,18 +32,18 @@
   text-align: left;
 }
 
-.contact .form .form-title {
+.contact .contact-title {
   font-weight: 600;
   padding-bottom: 15px;
 }
 
-.contact .form .form-subtitle {
+.contact .contact-subtitle {
   font-size: small;
   font-weight: 300;
   padding-bottom: 50px;
 }
 
-.contact .form .form-links {
+.contact .contact-links {
   font-weight: 200;
   font-size: small;
   #padding-left: 5px;
@@ -96,4 +104,9 @@
 
 .contact .form .contact-submitBtn:hover {
   background-color: #454545;
+}
+
+.contact .form .contact-submitBtn:disabled {
+  background-color: #cdcdcd;
+  cursor: default;
 }

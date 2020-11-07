@@ -9,7 +9,12 @@
   font-size: 20px;
 }
 
-.statement-form textarea {
-    width: 80%;
-    min-height: 250px;
+.forms textarea {
+  width: 80%;
+  min-height: 250px;
+  display: block;
+}
+
+.forms form {
+  display: block;
 }

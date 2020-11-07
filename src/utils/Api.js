@@ -346,10 +346,10 @@ export const deleteCategory = async function (id) {
   }
 };
 
-/*************************************** SITE ***************************************/
+/******************************** SITE ***********************************/
 
 export const getAbout = async function () {
-try {
+  try {
     let res = await fetch(config.server + "api/site/data/about", {
       method: "get",
       headers: {
@@ -366,10 +366,35 @@ try {
     console.log(e);
     return false;
   }
-}
+};
+
+export const updateAbout = async function (content) {
+  try {
+    let res = await fetch(config.server + "api/site/data/about", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      credentials: "include",
+      body: JSON.stringify({
+        lines: content,
+      }),
+    });
+    let result = await res.json();
+    if (!result || !result.success) {
+      return false;
+    }
+    return result;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
 
 export const getStatement = async function () {
-try {
+  try {
     let res = await fetch(config.server + "api/site/data/statement", {
       method: "get",
       headers: {
@@ -386,4 +411,59 @@ try {
     console.log(e);
     return false;
   }
-}
+};
+
+export const updateStatement = async function (content) {
+  try {
+    let res = await fetch(config.server + "api/site/data/statement", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      credentials: "include",
+      body: JSON.stringify({
+        lines: content,
+      }),
+    });
+    let result = await res.json();
+    if (!result || !result.success) {
+      return false;
+    }
+    return result;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
+/******************************** EMAIL ***********************************/
+
+export const sendEmail = async function (name, address, subject, content) {
+  try {
+    let res = await fetch(config.server + "api/email", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      credentials: "include",
+      body: JSON.stringify({
+        subject: subject,
+        text: content,
+        email: address,
+        name: name,
+      }),
+    });
+    let result = await res.json();
+    if (!result || !result.success) {
+      return false;
+    }
+    return result;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};

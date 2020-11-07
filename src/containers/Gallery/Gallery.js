@@ -233,25 +233,31 @@ export default class Gallery extends React.Component {
         </div>
       );
     } else if (this.state.data !== null) {
-      return (
-        <div className="App">
-          <div className="gallery">
-            <div className="divider"></div>
-            <GallerySelect
-              onChange={this.handleMultiSelectChange}
-              options={this.state.catData}
-              value={this.state.selected}
-            />
-            <div className={"grid"}>{this.generatePosts(this.state.data)}</div>
-            <PageNavigation
-              page={this.state.curPage}
-              pages={populatePages}
-              endPage={this.state.endPage}
-              click={this.handlePageClick}
-            />
+      if (this.state.curPage > this.state.endPage || this.state.curPage <= 0) {
+        return <div className="load-container"></div>;
+      } else {
+        return (
+          <div className="App">
+            <div className="gallery">
+              <div className="divider"></div>
+              <GallerySelect
+                onChange={this.handleMultiSelectChange}
+                options={this.state.catData}
+                value={this.state.selected}
+              />
+              <div className={"grid"}>
+                {this.generatePosts(this.state.data)}
+              </div>
+              <PageNavigation
+                page={this.state.curPage}
+                pages={populatePages}
+                endPage={this.state.endPage}
+                click={this.handlePageClick}
+              />
+            </div>
           </div>
-        </div>
-      );
+        );
+      }
     } else {
       // loading
       return (

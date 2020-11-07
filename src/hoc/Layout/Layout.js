@@ -9,6 +9,7 @@ import Admin from "../../containers/Admin/Admin";
 import Contact from "../../containers/Contact/Contact";
 import Gallery from "../../containers/Gallery/Gallery";
 import Bio from "../../containers/Bio/Bio";
+import NotFound from "../../components/NotFound/NotFound";
 
 export default class Layout extends Component {
   render() {
@@ -24,6 +25,7 @@ export default class Layout extends Component {
             <Route path="/contact" exact component={Contact} />
             <Route path="/gallery" exact component={Gallery} />
             <Route path="/bio" exact component={Bio} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </div>
         <div>

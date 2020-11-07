@@ -2,6 +2,7 @@ import React from "react";
 import "./Navbar.css";
 
 import sig from "../../../img/website-logo.png";
+import burger from "../../../img/burger-icon.png";
 
 // const top = { top: "-50px" };
 const scrolled = { top: "0px" };
@@ -53,23 +54,22 @@ class Navbar extends React.Component {
         style={this.state.scrollStyle}
       >
         <a href="/">
-          <img height="65" src={sig} alt="" />
+          <img className="logo" height="65" src={sig} alt="" />
         </a>
         <div className="links">
           <button className={iconClass} onClick={this.handleMenuClick}>
-            Menu
+            <img className="burger" src={burger} alt="" />
           </button>
           <div className={ddClass}>
-                      <a className={linksClass} href="/gallery">
+            <a className={linksClass} href="/gallery">
               Gallery
             </a>
-                        <a className={linksClass} href="/bio">
+            <a className={linksClass} href="/bio">
               Bio
             </a>
-                      <a className={linksClass} href="/contact">
+            <a className={linksClass} href="/contact">
               Contact
             </a>
-
           </div>
         </div>
       </div>

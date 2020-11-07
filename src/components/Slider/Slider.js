@@ -119,7 +119,7 @@ const Slider = (props) => {
               activeIndex={activeIndex}
               index={i}
               render={render(i)}
-              onLoad={!loaded ? onLoad : ``}
+              onLoad={!loaded ? onLoad : null}
               loaded={loaded}
             />
           ))}

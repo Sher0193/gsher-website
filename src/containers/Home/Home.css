@@ -14,7 +14,7 @@
 
 .bgimg-1 {
   position: relative;
-  height: calc(100% - 75px);
+  height: calc(100% - 70px);
 }
 
 .bgimg-2 {
@@ -37,7 +37,7 @@
 }
 
 .text-break {
-  color: #777;
+  color: #333;
   background-color: white;
   text-align: justify;
   padding: 50px 80px;
