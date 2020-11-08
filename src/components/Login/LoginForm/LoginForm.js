@@ -3,7 +3,9 @@ import InputField from "../InputField/InputField";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import UserStore from "../../../stores/UserStore";
 
-import config from "../../../config.json";
+import {
+    logIn,
+} from "../../../utils/Api";
 
 import "./LoginForm.css";
 
@@ -44,34 +46,17 @@ class LoginForm extends React.Component {
       buttonDisabled: true,
     });
 
-    try {
-      let res = await fetch(config.server + "login", {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        mode: "cors",
-        credentials: "include",
-        body: JSON.stringify({
-          username: this.state.username,
-          password: this.state.password,
-        }),
-      });
-      let result = await res.json();
-
+      let result = await logIn(this.state.username, this.state.password);
       if (result && result.success) {
         UserStore.isLoggedIn = true;
         UserStore.username = result.username;
       } else if (result && !result.success) {
         this.resetForm();
         alert(result.msg);
+      } else {
+        this.resetForm();
       }
-    } catch (e) {
-      console.log(e);
-      this.resetForm();
     }
-  }
 
   render() {
     return (

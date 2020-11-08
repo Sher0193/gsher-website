@@ -10,25 +10,18 @@ import PostForm from "../../components/Admin/PostForm/PostForm";
 import Posts from "../../components/Admin/Posts/Posts";
 import Site from "../../components/Admin/Site/Site";
 
-import config from "../../config.json";
+import {
+    isLoggedIn,
+} from "../../utils/Api";
 
 import "./Admin.css";
 
 class Admin extends React.Component {
   async componentDidMount() {
-    try {
-      console.log(config.server);
-      let res = await fetch(config.server + "isLoggedIn", {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        mode: "cors",
-        credentials: "include",
-      });
 
-      let result = await res.json();
+      
+
+      let result = await isLoggedIn();
 
       if (result && result.success) {
         UserStore.loading = false;
@@ -38,11 +31,7 @@ class Admin extends React.Component {
         UserStore.loading = false;
         UserStore.isLoggedIn = false;
       }
-    } catch (e) {
-      UserStore.loading = false;
-      UserStore.isLoggedIn = false;
     }
-  }
 
   onSubmit() {}
 

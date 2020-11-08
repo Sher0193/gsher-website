@@ -6,7 +6,7 @@ export const uploadImage = async function (file) {
   try {
     const formData = new FormData();
     formData.append("image", file);
-    let res = await fetch(config.server + "uploadimage", {
+    let res = await fetch(config.server + "api/uploadimage", {
       method: "post",
       mode: "cors",
       credentials: "include",
@@ -25,7 +25,7 @@ export const uploadImage = async function (file) {
 
 export const deleteImage = async function (filename) {
   try {
-    let res = await fetch(config.server + "deleteimage", {
+    let res = await fetch(config.server + "api/deleteimage", {
       method: "delete",
       headers: {
         Accept: "application/json",
@@ -457,6 +457,78 @@ export const sendEmail = async function (name, address, subject, content) {
         name: name,
       }),
     });
+    let result = await res.json();
+    if (!result || !result.success) {
+      return false;
+    }
+    return result;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
+/******************************** LOGIN ***********************************/
+
+export const isLoggedIn = async function () {
+  try {
+      let res = await fetch(config.server + "api/isLoggedIn", {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        credentials: "include",
+      });
+    let result = await res.json();
+    if (!result || !result.success) {
+      return false;
+    }
+    return result;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
+export const logIn = async function (username, password) {
+  try {
+     let res = await fetch(config.server + "api/login", {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        credentials: "include",
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
+    let result = await res.json();
+    if (!result || !result.success) {
+      return false;
+    }
+    return result;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
+export const logOut = async function () {
+  try {
+     let res = await fetch(config.server + "api/logout", {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        credentials: "include",
+      });
     let result = await res.json();
     if (!result || !result.success) {
       return false;

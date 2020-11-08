@@ -1,31 +1,24 @@
 import React from "react";
 import "./Sidenav.css";
 import SubmitButton from "../../../components/Login/SubmitButton/SubmitButton";
+
 import UserStore from "../../../stores/UserStore";
-import config from "../../../config.json";
+
+import {
+    logOut,
+} from "../../../utils/Api";
+
 
 export default class Sidenav extends React.Component {
   async doLogout() {
-    try {
-      let res = await fetch(config.server + "logout", {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        mode: "cors",
-        credentials: "include",
-      });
 
-      let result = await res.json();
+
+      let result = await logOut();
 
       if (result && result.success) {
         UserStore.isLoggedIn = false;
         UserStore.username = "";
       }
-    } catch (e) {
-      console.log(e);
-    }
   }
 
   render() {
