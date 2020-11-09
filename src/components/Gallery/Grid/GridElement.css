@@ -4,6 +4,7 @@
   border-style: solid;
   border-color: white;
   transition: all ease 1s;
+
 }
 
 .post-unloaded {
@@ -25,6 +26,7 @@
   position: absolute;
   width: 100%;
   text-align: center;
+  overflow: hidden;
 }
 
 .text-container h1 {
@@ -42,13 +44,13 @@
   margin-left: 5px;*/
   position: relative;
   text-shadow: 0px 0px #000;
-  font-size: large;
   padding: 2px;
-  border-radius: 30%;
+  border-radius: 5px;
   background-color: red;
   color: white;
   opacity: 0;
   font-weight: 600;
+  transition: opacity ease 0.3s;
 }
 
 .text-container p {
@@ -76,9 +78,25 @@
     0 16px 16px rgba(0, 0, 0, 0.12);
 }
 
-.app-shrink {
-  width: 400px;
+
+.no-display {
+    display: none;
 }
+
+.persistent-badge {
+    position: absolute;
+    text-align: center;
+    font-weight: 600;
+    z-index: 1;
+    transform: rotate(45deg);
+    top: 25px;
+    right: -75px;
+    width: 200px;
+    background: red;
+    color: white;
+    transition: opacity ease 0.1s;
+}
+
 
 @media only screen and (min-device-width: 1024px) {
   .post:hover h1,
@@ -90,6 +108,11 @@
   .clicked .text-container .clicked .badge {
     opacity: 1;
     z-index: 1;
+  }
+  
+  .post:hover .persistent-badge {
+      opacity: 0;
+      z-index: 0;
   }
   .post:hover {
     cursor: pointer;

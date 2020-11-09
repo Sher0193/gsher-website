@@ -17,6 +17,7 @@ export default class GridElement extends React.Component {
     return (
       <div className={divClass} onClick={() => this.props.handleClick()}>
         <div className="text-container">
+         <div className={this.props.sold ? "persistent-badge" : "no-display"}>SOLD</div>
           <h1>{this.props.text} </h1>
           <p>
             {this.props.dimensions}, {this.props.meta}
@@ -31,7 +32,7 @@ export default class GridElement extends React.Component {
           onLoad={() => this.setState({ loaded: true })}
           src={config.server + "img/thumbnails/" + this.props.image}
           alt={""}
-        />
+        ></img>
       </div>
     );
   }
