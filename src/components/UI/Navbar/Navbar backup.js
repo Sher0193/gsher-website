@@ -44,7 +44,9 @@ class Navbar extends React.Component {
     let linksClass = this.state.menuClicked ? "right responsive" : "right";
     let iconClass = this.state.menuClicked ? "icon responsive" : "icon";
     let burgerClass = this.state.menuClicked ? "burger responsive" : "burger";
-    let ddClass = this.state.menuClicked ? "dropdown dropdown-show" : "dropdown";
+    let ddClass = this.state.menuClicked
+      ? "dropdown dropdown-show"
+      : "dropdown";
     console.log(linksClass);
     return (
       <div
@@ -67,11 +69,11 @@ class Navbar extends React.Component {
               Contact
             </a>
           </div>
-                    <button className={iconClass} onClick={this.handleMenuClick}>
+          <button className={iconClass} onClick={this.handleMenuClick}>
             <div className={burgerClass}>
-                <span></span>
-                <span></span>
-                <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
           </button>
         </div>

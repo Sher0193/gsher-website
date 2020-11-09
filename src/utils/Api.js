@@ -472,15 +472,15 @@ export const sendEmail = async function (name, address, subject, content) {
 
 export const isLoggedIn = async function () {
   try {
-      let res = await fetch(config.server + "api/isLoggedIn", {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        mode: "cors",
-        credentials: "include",
-      });
+    let res = await fetch(config.server + "api/isLoggedIn", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      credentials: "include",
+    });
     let result = await res.json();
     if (!result || !result.success) {
       return false;
@@ -494,19 +494,19 @@ export const isLoggedIn = async function () {
 
 export const logIn = async function (username, password) {
   try {
-     let res = await fetch(config.server + "api/login", {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        mode: "cors",
-        credentials: "include",
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
-      });
+    let res = await fetch(config.server + "api/login", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      credentials: "include",
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    });
     let result = await res.json();
     if (!result || !result.success) {
       return false;
@@ -520,15 +520,15 @@ export const logIn = async function (username, password) {
 
 export const logOut = async function () {
   try {
-     let res = await fetch(config.server + "api/logout", {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        mode: "cors",
-        credentials: "include",
-      });
+    let res = await fetch(config.server + "api/logout", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      credentials: "include",
+    });
     let result = await res.json();
     if (!result || !result.success) {
       return false;

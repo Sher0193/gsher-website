@@ -4,21 +4,16 @@ import SubmitButton from "../../../components/Login/SubmitButton/SubmitButton";
 
 import UserStore from "../../../stores/UserStore";
 
-import {
-    logOut,
-} from "../../../utils/Api";
-
+import { logOut } from "../../../utils/Api";
 
 export default class Sidenav extends React.Component {
   async doLogout() {
+    let result = await logOut();
 
-
-      let result = await logOut();
-
-      if (result && result.success) {
-        UserStore.isLoggedIn = false;
-        UserStore.username = "";
-      }
+    if (result && result.success) {
+      UserStore.isLoggedIn = false;
+      UserStore.username = "";
+    }
   }
 
   render() {

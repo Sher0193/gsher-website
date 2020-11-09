@@ -13,8 +13,9 @@
   z-index: 2;
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12);
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
-    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12),
+    0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12),
+    0 8px 8px rgba(0, 0, 0, 0.12);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12);
 }
@@ -35,11 +36,11 @@
 }
 
 .navbar .links {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
   /*float: right;*/
-/*   padding-top: 25px; */
+  /*   padding-top: 25px; */
   margin-right: 2%;
 }
 
@@ -52,7 +53,7 @@
 .navbar .icon:hover {
   background: rgba(65, 74, 76, 0.5);
   /*   background-color: #414a4c; */
-/*   text-decoration: underline; */
+  /*   text-decoration: underline; */
 }
 
 .navbar .logo {
@@ -64,12 +65,12 @@
   opacity: 1;
   transition: opacity ease 1s;
   -webkit-transition: opacity ease 0.3s;
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .navbar .logo:hover {
   opacity: 0.8;
-/*  transform: scale(1.025);*/
+  /*  transform: scale(1.025);*/
 }
 
 .navbar .icon {
@@ -84,49 +85,48 @@
   font-size: large;
   background-color: white;
   cursor: pointer;
-      float: right;
+  float: right;
 
-    padding: 10px;
+  padding: 10px;
 }
 
 .navbar .burger {
-/*    height: 35px;
+  /*    height: 35px;
     width: auto;
     padding: 0px;*/
-    cursor: pointer;
-display: block;
-height: 3.25rem;
-position: relative;
-width: 3.25rem;
-margin-left: auto;
+  cursor: pointer;
+  display: block;
+  height: 3.25rem;
+  position: relative;
+  width: 3.25rem;
+  margin-left: auto;
 }
 
 .navbar .burger span {
-
-    background-color: black;
-     border-radius: 5px;
-display: block;
-height: 2px;
-top: 20px;
-margin-left: auto;
-margin-right: auto;
-margin-top: 3px;
-position: relative;
-transform-origin: center;
-transition-duration: 0.1s;
-transition-property: opacity,transform;
-transition-timing-function: ease-out;
-width: 20px;
+  background-color: black;
+  border-radius: 5px;
+  display: block;
+  height: 2px;
+  top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3px;
+  position: relative;
+  transform-origin: center;
+  transition-duration: 0.1s;
+  transition-property: opacity, transform;
+  transition-timing-function: ease-out;
+  width: 20px;
 }
 
 .navbar .burger.responsive span:first-child {
-    transform: translateY(5px) rotate(45deg);
+  transform: translateY(5px) rotate(45deg);
 }
 .navbar .burger.responsive span:nth-child(2) {
-    opacity: 0;
+  opacity: 0;
 }
 .navbar .burger.responsive span:nth-child(3) {
-    transform: translateY(-5px) rotate(-45deg);
+  transform: translateY(-5px) rotate(-45deg);
 }
 
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
@@ -135,44 +135,46 @@ width: 20px;
     display: none;
   }
   .navbar .icon {
-   display: block;
+    display: block;
   }
   .icon.responsive {
   }
   .links {
   }
-  
-  .navbar .right:hover,
-.navbar .icon:hover {
-  background: rgba(65, 74, 76, 0.5);
-  /*   background-color: #414a4c; */
-/*   text-decoration: none; */
-}
 
-.navbar .links {
+  .navbar .right:hover,
+  .navbar .icon:hover {
+    background: rgba(65, 74, 76, 0.5);
+    /*   background-color: #414a4c; */
+    /*   text-decoration: none; */
+  }
+
+  .navbar .links {
     margin-right: 0;
-}
+  }
   .navbar .dropdown {
     right: 0;
     top: 75px;
     background: white;
     transform: scaleY(0);
-    transform-origin:top;
+    transform-origin: top;
     overflow: hidden;
     position: absolute;
     display: block;
-    height:auto;
+    height: auto;
     float: left;
     width: 100vw;
     transition: transform ease 0.3s;
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
-    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12);
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
-    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
-    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px 0 rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12),
+      0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12),
+      0 8px 8px rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12),
+      0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12),
+      0 8px 8px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+      0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px 0 rgba(0, 0, 0, 0.12);
   }
-  
+
   .navbar .dropdown.dropdown-show {
     transform: scaleY(1);
   }
@@ -189,12 +191,11 @@ width: 20px;
 }
 
 @media (max-width: 450px) {
-/*  .navbar .logo {
+  /*  .navbar .logo {
     width: 60%;
     height: auto;
     max-height: 100%;
     position: absolute;
     top: 0;
   }*/
-
 }

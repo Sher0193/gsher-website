@@ -3,9 +3,7 @@ import InputField from "../InputField/InputField";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import UserStore from "../../../stores/UserStore";
 
-import {
-    logIn,
-} from "../../../utils/Api";
+import { logIn } from "../../../utils/Api";
 
 import "./LoginForm.css";
 
@@ -46,17 +44,17 @@ class LoginForm extends React.Component {
       buttonDisabled: true,
     });
 
-      let result = await logIn(this.state.username, this.state.password);
-      if (result && result.success) {
-        UserStore.isLoggedIn = true;
-        UserStore.username = result.username;
-      } else if (result && !result.success) {
-        this.resetForm();
-        alert(result.msg);
-      } else {
-        this.resetForm();
-      }
+    let result = await logIn(this.state.username, this.state.password);
+    if (result && result.success) {
+      UserStore.isLoggedIn = true;
+      UserStore.username = result.username;
+    } else if (result && !result.success) {
+      this.resetForm();
+      alert(result.msg);
+    } else {
+      this.resetForm();
     }
+  }
 
   render() {
     return (

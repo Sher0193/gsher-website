@@ -10,28 +10,23 @@ import PostForm from "../../components/Admin/PostForm/PostForm";
 import Posts from "../../components/Admin/Posts/Posts";
 import Site from "../../components/Admin/Site/Site";
 
-import {
-    isLoggedIn,
-} from "../../utils/Api";
+import { isLoggedIn } from "../../utils/Api";
 
 import "./Admin.css";
 
 class Admin extends React.Component {
   async componentDidMount() {
+    let result = await isLoggedIn();
 
-      
-
-      let result = await isLoggedIn();
-
-      if (result && result.success) {
-        UserStore.loading = false;
-        UserStore.isLoggedIn = true;
-        UserStore.username = result.username;
-      } else {
-        UserStore.loading = false;
-        UserStore.isLoggedIn = false;
-      }
+    if (result && result.success) {
+      UserStore.loading = false;
+      UserStore.isLoggedIn = true;
+      UserStore.username = result.username;
+    } else {
+      UserStore.loading = false;
+      UserStore.isLoggedIn = false;
     }
+  }
 
   onSubmit() {}
 
