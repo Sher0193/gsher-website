@@ -1,9 +1,5 @@
-* {
-  padding: 0;
-  margin: 0;
-}
-
 nav {
+  margin: 0;
   padding: 0;
   background: white;
   position: relative;
@@ -16,39 +12,37 @@ nav {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12);
 }
-a {
+nav a {
   color: black;
   text-decoration: none;
 }
-.menu {
+nav .menu {
+  margin: 0;
   list-style-type: none;
 }
-.logo {
+nav .logo {
   margin-left: 15px;
   transition: opacity ease 0.3s;
   cursor: pointer;
 }
 
-.logo:hover {
+nav .logo:hover {
   opacity: 0.8;
 }
-.item {
+nav .item {
   transition: background ease 0.3s;
   -webkit-transition: background ease 0.3s;
   padding: 25.5px 16px;
   font-weight: 500;
 }
 
-.item:hover {
+nav .item:hover {
   background: rgba(65, 74, 76, 0.5);
 }
 
 /* Mobile */
 
-nav {
-}
-
-.menu {
+nav .menu {
   display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
@@ -57,15 +51,15 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
-.menu li a {
+nav .menu li a {
   display: block;
   padding: 15px 5px;
 }
-.menu .logo a {
+nav .menu .logo a {
   padding: 0;
 }
 
-.toggle {
+nav .toggle {
   order: 1;
   font-size: 20px;
 }
@@ -123,16 +117,16 @@ nav .burger.active span:nth-child(3) {
   transform: translateY(-5px) rotate(-45deg);
 }
 
-.item.button {
+nav .item.button {
   order: 2;
 }
-.item {
+nav .item {
   order: 3;
   width: 100%;
   text-align: center;
   display: none;
 }
-.active .item {
+nav .active .item {
   display: block;
 }
 
@@ -141,25 +135,25 @@ nav .burger.active span:nth-child(3) {
   nav {
     padding: 0 30px;
   }
-  .menu {
+  nav .menu {
     justify-content: flex-start;
     flex-wrap: nowrap;
     background: none;
   }
-  .logo {
+  nav .logo {
     margin-right: auto;
     order: 0;
   }
-  .item {
+  nav .item {
     order: 1;
     position: relative;
     display: block;
     width: auto;
   }
-  .button {
+  nav .button {
     order: 2;
   }
-  .toggle {
+  nav .toggle {
     display: none;
   }
 }
