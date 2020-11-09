@@ -81,7 +81,7 @@ export default class extends React.Component {
           </div>
           <p>{this.props.meta}</p>
           <p>{this.props.dimensions}</p>
-          <p>${this.props.price}</p>
+          {this.props.sold ? <p><b><i>SOLD</i></b></p> : <p>${this.props.price}</p>}
         </div>
       </div>
     );

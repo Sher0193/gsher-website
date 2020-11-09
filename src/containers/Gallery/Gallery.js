@@ -229,6 +229,7 @@ export default class Gallery extends React.Component {
             meta={post.meta}
             dimensions={post.dimensions}
             price={post.price}
+            sold={post.sold}
           />
         </div>
       );

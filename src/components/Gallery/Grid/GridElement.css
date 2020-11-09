@@ -38,7 +38,7 @@
   transition: all ease 0.3s;
 }
 
-.badge {
+.post .badge {
   /*position: absolute;
   top: 20%;
   margin-left: 5px;*/
