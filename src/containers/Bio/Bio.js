@@ -1,14 +1,17 @@
 import React from "react";
 import "./Bio.css";
 
+import headshot from "../../img/headshot.png";
+
 export default class Bio extends React.Component {
   render() {
     return (
       <div className="App">
+        <div className="bio-container">
         <div className="bio">
           <div className="img-container">
             <img
-              src="https://images.squarespace-cdn.com/content/v1/55e39e41e4b02d84f4b08b27/1441213172491-PL4D3FJ8JEMW7P3YHCYB/ke17ZwdGBToddI8pDm48kDDq7GsJfuRofXbK__76DzVZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7a1hUo3u3Uc_wHU49CtRAaf0lWyiFpGIJ-monYZUIJyOAj3SiLRanEOczpSUj5rKrw/image-asset.png"
+              src={headshot}
               height="450px"
               alt=""
             />
@@ -65,6 +68,7 @@ export default class Bio extends React.Component {
                 Three Person Show, “The Selective Eye” Blyth Festival Art
                 Gallery, Blyth, Ontario
               </p>
+              </div>
             </div>
           </div>
         </div>
