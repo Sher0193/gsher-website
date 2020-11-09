@@ -1,8 +1,7 @@
 .post {
   position: relative;
   width: 100%;
-  border-style: solid;
-  border-color: white;
+  border-style: none;
   transition: all ease 1s;
 
 }
