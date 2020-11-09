@@ -10,7 +10,7 @@ const Dot = ({ active, handleClick }) => (
       cursor: pointer;
       border-radius: 50%;
       background: ${active ? "white" : "#232b2b"};
-      z-index: 2;
+      z-index: 1;
       transition: transform ease 0.1s;
       transition: background ease 1s;
       &:hover {

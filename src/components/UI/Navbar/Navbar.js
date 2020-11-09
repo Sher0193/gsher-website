@@ -2,7 +2,6 @@ import React from "react";
 import "./Navbar.css";
 
 import sig from "../../../img/website-logo.png";
-import burger from "../../../img/burger-icon.png";
 
 // const top = { top: "-50px" };
 const scrolled = { top: "0px" };
@@ -39,40 +38,65 @@ class Navbar extends React.Component {
     let toggle = !this.state.menuClicked;
     this.setState({ menuClicked: toggle });
   };
+  
+  handleClassName = (name) => {
+      return name + (this.state.menuClicked ? " active" : "");
+  }
 
   //   <img src={sig} alt=""/>
   render() {
-    let linksClass = this.state.menuClicked ? "right responsive" : "right";
-    let iconClass = this.state.menuClicked ? "icon responsive" : "icon";
-    let ddClass = this.state.menuClicked ? "dropdown dropdown-show" : "dropdown";
-    console.log(linksClass);
     return (
-      <div
-        className="navbar"
-        onScroll={this.handleScroll}
-        style={this.state.scrollStyle}
-      >
-        <a href="/">
-          <img className="logo" height="65" src={sig} alt="" />
-        </a>
-        <div className="links">
-          <button className={iconClass} onClick={this.handleMenuClick}>
-            <img className="burger" src={burger} alt="" />
-          </button>
-          <div className={ddClass}>
-            <a className={linksClass} href="/gallery">
-              Gallery
-            </a>
-            <a className={linksClass} href="/bio">
-              Bio
-            </a>
-            <a className={linksClass} href="/contact">
-              Contact
-            </a>
-          </div>
-        </div>
-      </div>
+        
+
+<nav>
+  <ul className={this.handleClassName("menu")}>
+    <li className={this.handleClassName("logo")}> <a href="/"><img height="50" src={sig} alt="" /></a></li>
+    <li className={this.handleClassName("toggle")}><button onClick={this.handleMenuClick} className={this.handleClassName("icon")}><div className={this.handleClassName("burger")}>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div></button></li>
+
+        <a className={this.handleClassName("item")} href="/gallery">Gallery</a>
+        <a className={this.handleClassName("item")} href="/bio">Bio</a>
+        <a className={this.handleClassName("item")} href="/contact">Contact</a>
+
+  </ul>
+</nav>
+
+
+      
     );
   }
 }
+
+// <div
+//         className="navbar"
+//         onScroll={this.handleScroll}
+//         style={this.state.scrollStyle}
+//       >
+//         <a href="/">
+//           <img className="logo" height="65" src={sig} alt="" />
+//         </a>
+//         <div className="links">
+//           <div className={ddClass}>
+//             <a className={linksClass} href="/gallery">
+//               Gallery
+//             </a>
+//             <a className={linksClass} href="/bio">
+//               Bio
+//             </a>
+//             <a className={linksClass} href="/contact">
+//               Contact
+//             </a>
+//           </div>
+//                     <button className={iconClass} onClick={this.handleMenuClick}>
+//             <div className={burgerClass}>
+//                 <span></span>
+//                 <span></span>
+//                 <span></span>
+//             </div>
+//           </button>
+//         </div>
+//       </div>
 export default Navbar;

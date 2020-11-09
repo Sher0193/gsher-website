@@ -20,7 +20,6 @@ const Slide = ({ content, index, activeIndex, render, onLoad, loaded }) => (
       #background-position: center;
       #background-repeat: no-repeat;
       #background-size: cover;
-      ${activeIndex === index ? `z-index: 1;` : ``}
     `}
   >
     {render ? (

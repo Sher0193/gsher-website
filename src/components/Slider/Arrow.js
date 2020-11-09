@@ -30,7 +30,7 @@ const Arrow = ({ direction, handleClick }) => (
           outline: 0;
         }
       }
-      z-index: 2;
+      z-index: 1;
     `}
   >
     {direction === "right" ? (
