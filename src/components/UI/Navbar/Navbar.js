@@ -51,7 +51,7 @@ class Navbar extends React.Component {
           <li className={this.handleClassName("logo")}>
             {" "}
             <a href="/">
-              <img height="50" src={sig} alt="" />
+              <img height="45" src={sig} alt="" />
             </a>
           </li>
           <li className={this.handleClassName("toggle")}>
