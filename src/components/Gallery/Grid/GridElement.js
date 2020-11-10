@@ -27,7 +27,7 @@ export default class GridElement extends React.Component {
           {this.props.sold ? (
             <span className="badge">SOLD</span>
           ) : (
-            <p>${this.props.price}</p>
+            <p className="price">${this.props.price}</p>
           )}
         </div>
         <img

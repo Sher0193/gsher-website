@@ -34,12 +34,17 @@
 }
 
 .text-container h1 {
+    margin: 0;
   font-size: xx-large;
   font-weight: 500;
   color: white;
   text-shadow: 2px 2px #000;
   opacity: 0;
   transition: all ease 0.3s;
+}
+
+.text-container .price {
+    margin: 0;
 }
 
 .post .badge {
