@@ -88,7 +88,7 @@ export default class extends React.Component {
           &#9666; Back To Gallery
         </div>
         <div className="img-container">
-            <div onClick={() => this.prev()}className={arrowClass}><img src={leftArrow} alt=""/></div>
+            <div onClick={() => this.prev()}className={this.props.prevActive() ? arrowClass : "arrow-hide"}><img src={leftArrow} alt=""/></div>
             <div className="main-img-container">
                 <img
                 className={imgClass}
@@ -97,7 +97,7 @@ export default class extends React.Component {
                 alt=""
                 />
             </div>
-             <div onClick={() => this.next()} className={arrowClass}><img src={rightArrow} alt=""/></div>
+             <div onClick={() => this.next()} className={this.props.nextActive() ? arrowClass : "arrow-hide"}><img src={rightArrow} alt=""/></div>
         </div>
         <div className={cardClass}>
           <div className="title">

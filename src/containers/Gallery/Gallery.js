@@ -141,6 +141,11 @@ export default class Gallery extends React.Component {
       this.handlePostClick(idx);
       return true;
   }
+  isNextActive = () => {
+      let idx = this.state.activeIndex + 1;
+      let pageIdx = this.state.curPage - 1;
+      return !(idx >= this.state.data[pageIdx].length && !(this.state.data[pageIdx + 1] && this.state.data[pageIdx + 1].length > 0));
+  }
   
   handlePrevImg = () => {
       let idx = this.state.activeIndex - 1;
@@ -160,6 +165,12 @@ export default class Gallery extends React.Component {
       }
       this.handlePostClick(idx);
       return true;
+  }
+  
+  isPrevActive = () => {
+       let idx = this.state.activeIndex - 1;
+      let pageIdx = this.state.curPage - 1;
+      return !(idx < 0 && !(this.state.data[pageIdx - 1] && this.state.data[pageIdx - 1].length > 0));
   }
   
   handlePostClick = (idx) => {
@@ -261,7 +272,9 @@ export default class Gallery extends React.Component {
         <div className="App">
           <Post
             destroy={this.backToGallery}
+            nextActive = {this.isNextActive}
             nextImg={this.handleNextImg}
+            prevActive = {this.isPrevActive}
             prevImg={this.handlePrevImg}
             loadedHook={() => this.setImageLoaded(true)}
             loaded={this.state.imageLoaded}

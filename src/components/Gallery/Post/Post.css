@@ -57,6 +57,13 @@
       transition: background ease 0.3s;
 }
 
+.post-container .img-container .arrow-hide {
+    opacity: 0;
+    width: 50px;
+      margin: 20px 0px 20px 0px;
+   cursor: default;
+}
+
 .post-container .img-container .arrow:hover {
     background: #d3d3d3;
 }
