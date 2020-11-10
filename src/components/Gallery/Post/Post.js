@@ -5,6 +5,9 @@ import "./Post.css";
 import config from "../../../config.json";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 
+import leftArrow from "../../../img/left-arrow.svg";
+import rightArrow from "../../../img/right-arrow.svg";
+
 // const scrollToRef = (ref) => window.scrollTo({
 //       top: ref.current.offsetTop,
 //       left: 0,
@@ -69,12 +72,18 @@ export default class extends React.Component {
         >
           &#9666; Back To Gallery
         </div>
-        <img
-          className={imgClass}
-          onLoad={() => this.onLoad()}
-          src={config.server + "img/" + this.props.img}
-          alt=""
-        />
+        <div className="img-container">
+            <div onClick={() => this.props.prevImg()}className="arrow"><img src={leftArrow} alt=""/></div>
+            <div className="main-img-container">
+                <img
+                className={imgClass}
+                onLoad={() => this.onLoad()}
+                src={config.server + "img/" + this.props.img}
+                alt=""
+                />
+            </div>
+             <div onClick={() => this.props.nextImg()} className="arrow"><img src={rightArrow} alt=""/></div>
+        </div>
         <div className={cardClass}>
           <div className="title">
             <i>{'"' + this.props.title + '"'}</i>

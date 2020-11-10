@@ -122,6 +122,43 @@ export default class Gallery extends React.Component {
     });
   };
 
+  handleNextImg = () => {
+      let idx = this.state.activeIndex + 1;
+      let pageIdx = this.state.curPage - 1;
+      if (idx >= this.state.data[pageIdx].length) {
+          if (this.state.data[pageIdx + 1] && this.state.data[pageIdx + 1].length > 0){
+              const params = new URLSearchParams(this.props.location.search);
+              params.set("page", pageIdx + 2);
+              params.set("image", 0);
+              this.props.history.push({
+                pathname: "/gallery",
+                search: params.toString(),
+                });
+              
+          }
+        return;
+      }
+      this.handlePostClick(idx);
+  }
+  
+  handlePrevImg = () => {
+      let idx = this.state.activeIndex - 1;
+      let pageIdx = this.state.curPage - 1;
+      if (idx < 0) {
+          if (this.state.data[pageIdx - 1] && this.state.data[pageIdx - 1].length > 0) {
+              const params = new URLSearchParams(this.props.location.search);
+              params.set("page", pageIdx);
+              params.set("image", this.state.data[pageIdx - 1].length - 1);
+              this.props.history.push({
+                pathname: "/gallery",
+                search: params.toString(),
+                });
+          }
+          return;
+      }
+      this.handlePostClick(idx);
+  }
+  
   handlePostClick = (idx) => {
     const params = new URLSearchParams(this.props.location.search);
     params.set("image", idx);
@@ -222,6 +259,8 @@ export default class Gallery extends React.Component {
         <div className="App">
           <Post
             destroy={this.backToGallery}
+            nextImg={this.handleNextImg}
+            prevImg={this.handlePrevImg}
             loadedHook={() => this.setImageLoaded(true)}
             loaded={this.state.imageLoaded}
             img={post.link}
