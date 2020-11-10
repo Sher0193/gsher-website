@@ -24,9 +24,10 @@
 
 .caption {
   position: absolute;
+  display: flex;
   top: 40%;
-  left: 10%;
-  right: 10%;
+  justify-content: center;
+  width: 100%;
   text-align: center;
   color: #000;
   text-shadow: 2px 2px #000;
@@ -34,6 +35,11 @@
   font-weight: 500;
   color: #fff;
   z-index: 1;
+  pointer-events: none;
+}
+
+.caption .border {
+
 }
 
 .text-break {
