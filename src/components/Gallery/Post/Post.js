@@ -109,7 +109,7 @@ export default class extends React.Component {
           <p>{this.props.meta}</p>
           <p>{this.props.dimensions}</p>
           {this.props.sold ? (
-            <p style={{color: "red"}}>
+            <p style={{ color: "red" }}>
               <b>
                 <i>SOLD</i>
               </b>

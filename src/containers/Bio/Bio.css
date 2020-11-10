@@ -10,9 +10,9 @@
   display: block;
 }
 .bio {
-    background: white;
-    padding-left:25px;
-    padding-right:25px;
+  background: white;
+  padding-left: 25px;
+  padding-right: 25px;
   width: 50%;
   display: block;
   margin-left: auto;
@@ -76,7 +76,7 @@
 .bio .img-container {
   float: right;
   margin: 5px;
-/*   padding-right: 25px; */
+  /*   padding-right: 25px; */
   width: 33%;
 }
 
@@ -86,6 +86,9 @@
 }
 
 @media screen and (max-width: 820px) {
+  .bio {
+    padding: 0;
+  }
   .bio .text {
     display: block;
     margin-left: auto;

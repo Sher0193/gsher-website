@@ -126,7 +126,7 @@
   }
 
   .post:hover .persistent-badge {
-/*     opacity: 0; */
+    /*     opacity: 0; */
   }
   .post:hover {
     cursor: pointer;
