@@ -111,7 +111,7 @@
 @media only screen and (min-device-width: 1024px) {
   .post:hover h1,
   .post:hover p,
-  .post:hover .badge,
+/*   .post:hover .badge, */
   .post:hover .text-container {
     opacity: 1;
     z-index: 1;
@@ -126,7 +126,7 @@
   }
 
   .post:hover .persistent-badge {
-    opacity: 0;
+/*     opacity: 0; */
   }
   .post:hover {
     cursor: pointer;

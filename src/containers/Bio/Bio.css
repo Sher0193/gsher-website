@@ -1,5 +1,5 @@
 .bio-container {
-  background-color: white;
+  background-color: #d4d4d4;
   min-height: 100%;
   #padding-bottom: 75px;
   position: relative;
@@ -10,6 +10,9 @@
   display: block;
 }
 .bio {
+    background: white;
+    padding-left:25px;
+    padding-right:25px;
   width: 50%;
   display: block;
   margin-left: auto;
@@ -73,7 +76,7 @@
 .bio .img-container {
   float: right;
   margin: 5px;
-  padding-right: 25px;
+/*   padding-right: 25px; */
   width: 33%;
 }
 
