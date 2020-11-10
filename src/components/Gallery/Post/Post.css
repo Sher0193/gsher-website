@@ -53,9 +53,15 @@
      align-items: center;
     height: 50px;
     width: 50px;
-      background: white;
-      border-radius: 50%;
       margin: 0 0px 0 0px;
+}
+
+.post-container .img-container .arrow img {
+    transition: transform ease-in 0.1s;
+}
+
+.post-container .img-container .arrow:hover img {
+    transform: scale(1.2);
 }
 
 
