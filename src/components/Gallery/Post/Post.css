@@ -13,7 +13,7 @@
 .post-container .img-container .main-img-container {
     align-items: flex-start;
     max-height: auto;
-    width: 100%;
+
     display: flex;
     justify-content: center;
   margin-top: 20px;
@@ -36,24 +36,29 @@
 .post-container .img-loaded {
   transform: scale(1);
   opacity: 1;
-    transition: all ease 1s;
+    transition: transform ease 1s;
+    transition: opacity ease 1s;
 }
 
 .post-container .img-container {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .post-container .img-container .arrow {
     cursor: pointer;
     display: flex;
-     justify-content: center;
-     align-items: center;
-    height: 50px;
+    justify-content: center;
+    align-items: center;
+     align-self: stretch;
     width: 50px;
-      margin: 0 0px 0 0px;
+      margin: 20px 0px 20px 0px;
+      transition: background ease 0.3s;
+}
+
+.post-container .img-container .arrow:hover {
+    background: #d3d3d3;
 }
 
 .post-container .img-container .arrow img {
