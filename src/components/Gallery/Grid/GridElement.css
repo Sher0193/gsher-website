@@ -3,7 +3,6 @@
   width: 100%;
   border-style: none;
   transition: all ease 1s;
-
 }
 
 .post-unloaded {
@@ -23,9 +22,15 @@
 
 .post .text-container {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
   width: 100%;
   text-align: center;
   overflow: hidden;
+  z-index: 1;
+  transition: transform ease 0.3s;
 }
 
 .text-container h1 {
@@ -50,6 +55,8 @@
   opacity: 0;
   font-weight: 600;
   transition: opacity ease 0.3s;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .text-container p {
@@ -77,41 +84,39 @@
     0 16px 16px rgba(0, 0, 0, 0.12);
 }
 
-
 .no-display {
-    display: none;
+  display: none;
 }
 
 .persistent-badge {
-    position: absolute;
-    text-align: center;
-    font-weight: 600;
-    z-index: 1;
-    transform: rotate(45deg);
-    top: 25px;
-    right: -75px;
-    width: 200px;
-    background: red;
-    color: white;
-    transition: opacity ease 0.1s;
+  position: absolute;
+  text-align: center;
+  font-weight: 600;
+  z-index: 1;
+  transform: rotate(45deg);
+  top: 25px;
+  right: -75px;
+  width: 200px;
+  background: red;
+  color: white;
+  transition: opacity ease 0.3s;
 }
-
 
 @media only screen and (min-device-width: 1024px) {
   .post:hover h1,
   .post:hover p,
-  .post:hover .text-container,
   .post:hover .badge,
-  .clicked h1,
-  .clicked p,
-  .clicked .text-container .clicked .badge {
+  .post:hover .text-container {
     opacity: 1;
     z-index: 1;
   }
-  
+
+  .post:hover .text-container {
+    transform: scale(1.05);
+  }
+
   .post:hover .persistent-badge {
-      opacity: 0;
-      z-index: 0;
+    opacity: 0;
   }
   .post:hover {
     cursor: pointer;

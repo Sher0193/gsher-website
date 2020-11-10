@@ -247,9 +247,9 @@ export default class Gallery extends React.Component {
                 value={this.state.selected}
               />
               <div className={"grid-container"}>
-              <div className={"grid"}>
-                {this.generatePosts(this.state.data)}
-              </div>
+                <div className={"grid"}>
+                  {this.generatePosts(this.state.data)}
+                </div>
               </div>
               <PageNavigation
                 page={this.state.curPage}

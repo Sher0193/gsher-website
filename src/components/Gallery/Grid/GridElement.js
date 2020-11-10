@@ -17,7 +17,9 @@ export default class GridElement extends React.Component {
     return (
       <div className={divClass} onClick={() => this.props.handleClick()}>
         <div className="text-container">
-         <div className={this.props.sold ? "persistent-badge" : "no-display"}>SOLD</div>
+          <div className={this.props.sold ? "persistent-badge" : "no-display"}>
+            SOLD
+          </div>
           <h1>{this.props.text} </h1>
           <p>
             {this.props.dimensions}, {this.props.meta}
