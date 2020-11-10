@@ -40,25 +40,23 @@ export default class extends React.Component {
     //     });
     //       scrollToRef(this.imgRef);
   }
-  
+
   async next() {
-      this.setState({loaded: false,}, () => {
-                if (!this.props.nextImg())
-                    this.setState({loaded: true,});
+    this.setState({ loaded: false }, () => {
+      if (!this.props.nextImg()) this.setState({ loaded: true });
     });
   }
-  
+
   async prev() {
-      this.setState({loaded: false,}, () => {
-          if (!this.props.prevImg()) 
-              this.setState({loaded: true,});
+    this.setState({ loaded: false }, () => {
+      if (!this.props.prevImg()) this.setState({ loaded: true });
     });
   }
 
   onLoad() {
     // TODO: scrolling will not work on firefox on repeat requests due to caching. must be some fix
     window.scrollTo({
-      top: 0,
+      top: 134,
       left: 0,
       behavior: "smooth",
     });
@@ -88,16 +86,26 @@ export default class extends React.Component {
           &#9666; Back To Gallery
         </div>
         <div className="img-container">
-            <div onClick={() => this.prev()}className={this.props.prevActive() ? arrowClass : "arrow-hide"}><img src={leftArrow} alt=""/></div>
-            <div className="main-img-container">
-                <img
-                className={imgClass}
-                onLoad={() => this.onLoad()}
-                src={config.server + "img/" + this.props.img}
-                alt=""
-                />
-            </div>
-             <div onClick={() => this.next()} className={this.props.nextActive() ? arrowClass : "arrow-hide"}><img src={rightArrow} alt=""/></div>
+          <div
+            onClick={() => this.prev()}
+            className={this.props.prevActive() ? arrowClass : "arrow-hide"}
+          >
+            <img src={leftArrow} alt="" />
+          </div>
+          <div className="main-img-container">
+            <img
+              className={imgClass}
+              onLoad={() => this.onLoad()}
+              src={config.server + "img/" + this.props.img}
+              alt=""
+            />
+          </div>
+          <div
+            onClick={() => this.next()}
+            className={this.props.nextActive() ? arrowClass : "arrow-hide"}
+          >
+            <img src={rightArrow} alt="" />
+          </div>
         </div>
         <div className={cardClass}>
           <div className="title">

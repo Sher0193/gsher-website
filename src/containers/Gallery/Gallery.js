@@ -123,56 +123,68 @@ export default class Gallery extends React.Component {
   };
 
   handleNextImg = () => {
-      let idx = this.state.activeIndex + 1;
-      let pageIdx = this.state.curPage - 1;
-      if (idx >= this.state.data[pageIdx].length) {
-          if (this.state.data[pageIdx + 1] && this.state.data[pageIdx + 1].length > 0){
-              const params = new URLSearchParams(this.props.location.search);
-              params.set("page", pageIdx + 2);
-              params.set("image", 0);
-              this.props.history.push({
-                pathname: "/gallery",
-                search: params.toString(),
-                });
-              return true;
-          }
-        return false;
+    let idx = this.state.activeIndex + 1;
+    let pageIdx = this.state.curPage - 1;
+    if (idx >= this.state.data[pageIdx].length) {
+      if (
+        this.state.data[pageIdx + 1] &&
+        this.state.data[pageIdx + 1].length > 0
+      ) {
+        const params = new URLSearchParams(this.props.location.search);
+        params.set("page", pageIdx + 2);
+        params.set("image", 0);
+        this.props.history.push({
+          pathname: "/gallery",
+          search: params.toString(),
+        });
+        return true;
       }
-      this.handlePostClick(idx);
-      return true;
-  }
+      return false;
+    }
+    this.handlePostClick(idx);
+    return true;
+  };
   isNextActive = () => {
-      let idx = this.state.activeIndex + 1;
-      let pageIdx = this.state.curPage - 1;
-      return !(idx >= this.state.data[pageIdx].length && !(this.state.data[pageIdx + 1] && this.state.data[pageIdx + 1].length > 0));
-  }
-  
+    let idx = this.state.activeIndex + 1;
+    let pageIdx = this.state.curPage - 1;
+    return !(
+      idx >= this.state.data[pageIdx].length &&
+      !(this.state.data[pageIdx + 1] && this.state.data[pageIdx + 1].length > 0)
+    );
+  };
+
   handlePrevImg = () => {
-      let idx = this.state.activeIndex - 1;
-      let pageIdx = this.state.curPage - 1;
-      if (idx < 0) {
-          if (this.state.data[pageIdx - 1] && this.state.data[pageIdx - 1].length > 0) {
-              const params = new URLSearchParams(this.props.location.search);
-              params.set("page", pageIdx);
-              params.set("image", this.state.data[pageIdx - 1].length - 1);
-              this.props.history.push({
-                pathname: "/gallery",
-                search: params.toString(),
-                });
-              return true;
-          }
-          return false;
+    let idx = this.state.activeIndex - 1;
+    let pageIdx = this.state.curPage - 1;
+    if (idx < 0) {
+      if (
+        this.state.data[pageIdx - 1] &&
+        this.state.data[pageIdx - 1].length > 0
+      ) {
+        const params = new URLSearchParams(this.props.location.search);
+        params.set("page", pageIdx);
+        params.set("image", this.state.data[pageIdx - 1].length - 1);
+        this.props.history.push({
+          pathname: "/gallery",
+          search: params.toString(),
+        });
+        return true;
       }
-      this.handlePostClick(idx);
-      return true;
-  }
-  
+      return false;
+    }
+    this.handlePostClick(idx);
+    return true;
+  };
+
   isPrevActive = () => {
-       let idx = this.state.activeIndex - 1;
-      let pageIdx = this.state.curPage - 1;
-      return !(idx < 0 && !(this.state.data[pageIdx - 1] && this.state.data[pageIdx - 1].length > 0));
-  }
-  
+    let idx = this.state.activeIndex - 1;
+    let pageIdx = this.state.curPage - 1;
+    return !(
+      idx < 0 &&
+      !(this.state.data[pageIdx - 1] && this.state.data[pageIdx - 1].length > 0)
+    );
+  };
+
   handlePostClick = (idx) => {
     const params = new URLSearchParams(this.props.location.search);
     params.set("image", idx);
@@ -272,9 +284,9 @@ export default class Gallery extends React.Component {
         <div className="App">
           <Post
             destroy={this.backToGallery}
-            nextActive = {this.isNextActive}
+            nextActive={this.isNextActive}
             nextImg={this.handleNextImg}
-            prevActive = {this.isPrevActive}
+            prevActive={this.isPrevActive}
             prevImg={this.handlePrevImg}
             loadedHook={() => this.setImageLoaded(true)}
             loaded={this.state.imageLoaded}
