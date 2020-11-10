@@ -134,11 +134,12 @@ export default class Gallery extends React.Component {
                 pathname: "/gallery",
                 search: params.toString(),
                 });
-              
+              return true;
           }
-        return;
+        return false;
       }
       this.handlePostClick(idx);
+      return true;
   }
   
   handlePrevImg = () => {
@@ -153,10 +154,12 @@ export default class Gallery extends React.Component {
                 pathname: "/gallery",
                 search: params.toString(),
                 });
+              return true;
           }
-          return;
+          return false;
       }
       this.handlePostClick(idx);
+      return true;
   }
   
   handlePostClick = (idx) => {
@@ -197,7 +200,6 @@ export default class Gallery extends React.Component {
   }
 
   setGallery(page, tags, data, idx) {
-    console.log("page : " + page + "\ntags: " + tags);
     window.scrollTo({
       top: 0,
       left: 0,

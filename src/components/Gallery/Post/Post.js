@@ -40,6 +40,20 @@ export default class extends React.Component {
     //     });
     //       scrollToRef(this.imgRef);
   }
+  
+  async next() {
+      this.setState({loaded: false,}, () => {
+                if (!this.props.nextImg())
+                    this.setState({loaded: true,});
+    });
+  }
+  
+  async prev() {
+      this.setState({loaded: false,}, () => {
+          if (!this.props.prevImg()) 
+              this.setState({loaded: true,});
+    });
+  }
 
   onLoad() {
     // TODO: scrolling will not work on firefox on repeat requests due to caching. must be some fix
@@ -56,6 +70,7 @@ export default class extends React.Component {
     let imgClass = this.state.loaded ? "img-loaded" : "img-loading";
     let cardClass = this.state.loaded ? "card loaded" : "card loading";
     let backClass = this.state.loaded ? "back loaded" : "back loading";
+    let arrowClass = this.state.loaded ? "arrow loaded" : "arrow loading";
     return (
       <div className="post-container">
         {this.state.loaded ? (
@@ -73,7 +88,7 @@ export default class extends React.Component {
           &#9666; Back To Gallery
         </div>
         <div className="img-container">
-            <div onClick={() => this.props.prevImg()}className="arrow"><img src={leftArrow} alt=""/></div>
+            <div onClick={() => this.prev()}className={arrowClass}><img src={leftArrow} alt=""/></div>
             <div className="main-img-container">
                 <img
                 className={imgClass}
@@ -82,7 +97,7 @@ export default class extends React.Component {
                 alt=""
                 />
             </div>
-             <div onClick={() => this.props.nextImg()} className="arrow"><img src={rightArrow} alt=""/></div>
+             <div onClick={() => this.next()} className={arrowClass}><img src={rightArrow} alt=""/></div>
         </div>
         <div className={cardClass}>
           <div className="title">
