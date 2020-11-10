@@ -55,11 +55,6 @@ export default class extends React.Component {
 
   onLoad() {
     // TODO: scrolling will not work on firefox on repeat requests due to caching. must be some fix
-    window.scrollTo({
-      top: 134,
-      left: 0,
-      behavior: "smooth",
-    });
     this.setState({ loaded: true });
   }
 

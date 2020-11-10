@@ -226,7 +226,7 @@ export default class Gallery extends React.Component {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth",
+      behavior: "auto",
     });
     page = page === null ? this.state.curPage : page;
     let endPage = data === null ? -1 : data.length;
