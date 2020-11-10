@@ -11,7 +11,7 @@
 }
 
 .post-container .img-container .main-img-container {
-
+    align-items: flex-start;
     max-height: auto;
     width: 100%;
     display: flex;
