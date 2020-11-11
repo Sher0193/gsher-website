@@ -251,7 +251,7 @@ export default class PostForm extends React.Component {
       this.state.editForm;
     if (this.state.catData !== null) {
       return (
-        <div className="form">
+        <div className="postForm-container">
           {!this.state.editForm ? "NEW POST" : "EDIT POST"}
           <form className="postForm" onSubmit={this.onSubmit}>
             <label>
