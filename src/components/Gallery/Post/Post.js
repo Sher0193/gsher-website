@@ -78,7 +78,7 @@ export default class extends React.Component {
           onClick={() => this.props.destroy()}
           className={backClass}
         >
-          &#9666; Back To Gallery
+          Back To Gallery
         </div>
         <div className="img-container">
           <div
@@ -103,20 +103,20 @@ export default class extends React.Component {
           </div>
         </div>
         <div className={cardClass}>
-          <div className="title">
-            <i>{'"' + this.props.title + '"'}</i>
+          <div className="title-container">
+            <div className="title">{'"' + this.props.title + '"'}</div>
+            <p>{this.props.meta}</p>
+            <p>{this.props.dimensions}</p>
+            {this.props.sold ? (
+              <p style={{ color: "red" }}>
+                <b>
+                  <i>SOLD</i>
+                </b>
+              </p>
+            ) : (
+              <p>${this.props.price}</p>
+            )}
           </div>
-          <p>{this.props.meta}</p>
-          <p>{this.props.dimensions}</p>
-          {this.props.sold ? (
-            <p style={{ color: "red" }}>
-              <b>
-                <i>SOLD</i>
-              </b>
-            </p>
-          ) : (
-            <p>${this.props.price}</p>
-          )}
         </div>
       </div>
     );

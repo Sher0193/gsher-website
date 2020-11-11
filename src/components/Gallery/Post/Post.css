@@ -1,31 +1,30 @@
 .post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: white;
-  min-height: 100vh;
+  min-height: calc(100vh - 62px);
   position: relative;
   background-position: center;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 25px;
-  padding-bottom: 50px;
+  padding-top: 0px;
 }
 
 .post-container .img-container .main-img-container {
   align-items: flex-start;
   max-height: auto;
-
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 .post-container .img-container .main-img-container img {
   max-height: 95vh;
   max-width: 100%;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
-    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
-    0 16px 16px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 4px 4px 20px rgba(10, 10, 10, 0.8);
+  -webkit-box-shadow: 4px 4px 20px rgba(10, 10, 10, 0.8);
+  box-shadow: 4px 4px 20px rgba(10, 10, 10, 0.8);
 }
 
 .post-container .img-loading {
@@ -53,7 +52,6 @@
   align-items: center;
   align-self: stretch;
   width: 50px;
-  margin: 20px 0px 20px 0px;
   transition: background ease 0.3s;
 }
 
@@ -77,21 +75,26 @@
 }
 
 .post-container .card {
-  padding: 2px 10px 2px 10px;
-  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 100px;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
-    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
-    0 16px 16px rgba(0, 0, 0, 0.12);
-  text-align: center;
+  width: 100%;
+  margin: 25px 0 25px 0;
+  text-align: left;
   color: black;
 }
-.title {
-  padding-top: 25px;
-  font-weight: bold;
+
+.post-container .card p {
+  margin: 0;
+  font-weight: 300;
+  font-size: 15px;
+}
+.post-container .title {
+  /*padding-top: 25px;*/
+  font-weight: 500;
+  font-size: large;
+  font-style: italic;
 }
 
 .post-container .loading {
@@ -103,12 +106,12 @@
 }
 
 .back {
-  position: absolute;
-  top: 10px;
+  margin: 10px 0 10px 0;
+  align-self: flex-start;
   display: inline-block;
   width: auto;
-  padding-left: 10px;
-  font-size: large;
+  padding-left: 25px;
+  font-size: medium;
 }
 
 .back:hover {
@@ -120,8 +123,5 @@
 @media screen and (max-width: 720px) {
   .post-container .img-container .main-img-container img {
     max-height: 70vh;
-  }
-  .card {
-    width: 80%;
   }
 }
