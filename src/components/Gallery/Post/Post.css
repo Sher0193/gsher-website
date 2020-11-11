@@ -85,6 +85,10 @@
   color: black;
 }
 
+.post-container .card .title-container {
+    margin: 0 15px 0 15px;
+}
+
 .post-container .card p {
   margin: 0;
   font-weight: 300;
