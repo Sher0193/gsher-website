@@ -98,6 +98,9 @@
   font-weight: 300;
   font-size: 15px;
 }
+.post-container .card p.phone {
+    font-weight: 400;
+}
 .post-container .title {
   /*padding-top: 25px;*/
   font-weight: 500;
