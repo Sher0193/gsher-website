@@ -31,7 +31,7 @@ export default class extends React.Component {
             <i>
               <a href={vendor.vendor_link}>{vendor.vendor_name}</a>
             </i>
-            <b>{vendor.vendor_phone ? " (" + vendor.vendor_phone + ")" : ""}</b>
+            <b>{vendor.vendor_phone ? " " + vendor.vendor_phone + "" : ""}</b>
           </p>
         </div>
       );
@@ -40,7 +40,7 @@ export default class extends React.Component {
         <div className="vendor">
           <p>
             Available from <i>{vendor.vendor_name}</i>{" "}
-            <b>{vendor.vendor_phone ? " (" + vendor.vendor_phone + ")" : ""}</b>
+            <b>{vendor.vendor_phone ? " " + vendor.vendor_phone + "" : ""}</b>
           </p>
         </div>
       );
