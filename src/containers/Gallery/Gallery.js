@@ -7,7 +7,7 @@ import GallerySelect from "../../components/Gallery/Select/GallerySelect";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import PageNavigation from "../../components/Gallery/PageNavigation/PageNavigation";
 
-import { getPosts, getCategories } from "../../utils/Api";
+import { getPosts, getCategories, getVendors } from "../../utils/Api";
 
 import { populatePages, arraysEqual } from "../../utils/Utils";
 
@@ -23,21 +23,22 @@ export default class Gallery extends React.Component {
       curPage: 1,
       endPage: -1,
       selected: null,
+      vendData: null,
     };
   }
 
   componentDidMount() {
-    console.log("mount");
     this.update();
   }
   componentDidUpdate() {
-    console.log("update");
     this.update();
   }
 
   update() {
     if (this.state.catData === null) {
       this.apiCategories();
+    } else if (this.state.vendData === null) {
+      this.apiVendors();
     } else {
       this.checkParams();
     }
@@ -81,7 +82,6 @@ export default class Gallery extends React.Component {
 
   async apiCategories() {
     let result = await getCategories();
-    console.log(result.data);
     if (result && result.success) {
       let options = [];
       for (let i = 0; i < result.data.length; i++) {
@@ -97,6 +97,24 @@ export default class Gallery extends React.Component {
       this.setState({ catData: [] });
     }
   }
+
+  async apiVendors() {
+    let result = await getVendors();
+    if (result && result.success) {
+      this.setState({ vendData: result.data });
+      return;
+    }
+    this.setState({ vendData: [] });
+  }
+
+  getVendorById = (id) => {
+    for (let i = 0; i < this.state.vendData.length; i++) {
+      if (id === this.state.vendData[i].id) {
+        return this.state.vendData[i];
+      }
+    }
+    return null;
+  };
 
   handleMultiSelectChange = (selectedOptions) => {
     const params = new URLSearchParams(this.props.location.search);
@@ -144,6 +162,7 @@ export default class Gallery extends React.Component {
     this.handlePostClick(idx);
     return true;
   };
+
   isNextActive = () => {
     let idx = this.state.activeIndex + 1;
     let pageIdx = this.state.curPage - 1;
@@ -296,6 +315,7 @@ export default class Gallery extends React.Component {
             dimensions={post.dimensions}
             price={post.price}
             sold={post.sold}
+            vendor={this.getVendorById(post.vendor_id)}
           />
         </div>
       );

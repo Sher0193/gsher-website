@@ -5,8 +5,9 @@ import { Route } from "react-router-dom";
 import UserStore from "../../stores/UserStore";
 import LoginForm from "../../components/Login/LoginForm/LoginForm";
 
-import Sidenav from "../../components/UI/Sidenav/Sidenav";
-import PostForm from "../../components/Admin/PostForm/PostForm";
+import AdminPanel from "../../components/UI/AdminPanel/AdminPanel";
+import PostForm from "../../components/Admin/AdminForm/PostForm";
+import VendorForm from "../../components/Admin/AdminForm/VendorForm";
 import Posts from "../../components/Admin/Posts/Posts";
 import Site from "../../components/Admin/Site/Site";
 
@@ -39,36 +40,48 @@ class Admin extends React.Component {
       if (UserStore.isLoggedIn) {
         return (
           <div className="App">
+            <AdminPanel />
             <Route exact path={"/admin"}>
-              <div className="container">Welcome, {UserStore.username}</div>
+              <div className="empty-container admin-container">
+                Welcome, {UserStore.username}
+              </div>
             </Route>
             <Route exact path={"/admin/posts/edit"}>
-              <div className="container">
+              <div className="empty-container">
                 <PostForm params={this.props.location.search} />
               </div>
             </Route>
+            <Route exact path={"/admin/posts/vendors/edit"}>
+              <div className="empty-container">
+                <VendorForm params={this.props.location.search} />
+              </div>
+            </Route>
+            <Route exact path={"/admin/posts/vendors/new"}>
+              <div className="empty-container">
+                <VendorForm />
+              </div>
+            </Route>
             <Route exact path={"/admin/posts/new"}>
-              <div className="container">
+              <div className="empty-container">
                 <PostForm />
               </div>
             </Route>
             <Route exact path={"/admin/posts/"}>
-              <div className="container">
+              <div className="empty-container">
                 <Posts />
               </div>
             </Route>
             <Route exact path={"/admin/site/"}>
-              <div className="container">
+              <div className="empty-container">
                 <Site />
               </div>
             </Route>
-            <Sidenav />
           </div>
         );
       } else {
         return (
           <div className="App">
-            <div className="container">
+            <div className="login-container empty-container">
               <LoginForm />
             </div>
           </div>

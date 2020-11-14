@@ -3,7 +3,7 @@
 .postForm input[type="number"],
 .postForm input[type="file"],
 .postForm input[type="date"],
-.postForm select .postForm {
+.postForm select {
   width: 35%;
   min-width: 200px;
   padding: 8px 20px;
@@ -47,6 +47,7 @@
 
 .postForm-container {
   width: 95%;
+  min-height: calc(100vh - 124px);
   border-radius: 5px;
   background-color: #f2f2f2;
   padding-top: 20px;

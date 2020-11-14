@@ -3,7 +3,7 @@ import React from "react";
 import config from "../../../config.json";
 
 const PostRow = (props) => (
-  <tr>
+  <tr className={props.index % 2 === 0 ? "tableRowOdd" : ""}>
     <td>{props.postId}</td>
     <td>{props.postName}</td>
     <td>
@@ -14,22 +14,25 @@ const PostRow = (props) => (
       />
     </td>
     <td>
-      <a className="button" href={"/admin/posts/edit?post=" + props.postId}>
+      <a
+        className="warning-btn fbtn"
+        href={"/admin/posts/edit?post=" + props.postId}
+      >
         Edit
       </a>
     </td>
     <td>
-      <button onClick={props.handleClick}>Delete</button>
+      <div className="danger-btn fbtn" onClick={props.handleClick}>
+        Delete
+      </div>
     </td>
     <td>
-      <button
-        className={
-          props.featured === 1 ? "unfeature-btn fbtn" : "feature-btn fbtn"
-        }
+      <div
+        className={props.featured === 1 ? "danger-btn fbtn" : "okay-btn fbtn"}
         onClick={props.handleFeature}
       >
         {props.featured === 1 ? "Unfeature" : "Feature"}
-      </button>
+      </div>
     </td>
   </tr>
 );

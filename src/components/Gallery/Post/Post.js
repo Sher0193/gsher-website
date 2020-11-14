@@ -41,6 +41,34 @@ export default class extends React.Component {
     //       scrollToRef(this.imgRef);
   }
 
+  generateVendor(vendor) {
+    if (!vendor) {
+      return "";
+    }
+    if (vendor.vendor_link) {
+      return (
+        <div className="vendor">
+          <p>
+            Available from{" "}
+            <i>
+              <a href={vendor.vendor_link}>{vendor.vendor_name}</a>
+            </i>
+            <b>{vendor.vendor_phone ? " (" + vendor.vendor_phone + ")" : ""}</b>
+          </p>
+        </div>
+      );
+    } else {
+      return (
+        <div className="vendor">
+          <p>
+            Available from <i>{vendor.vendor_name}</i>{" "}
+            <b>{vendor.vendor_phone ? " (" + vendor.vendor_phone + ")" : ""}</b>
+          </p>
+        </div>
+      );
+    }
+  }
+
   async next() {
     this.setState({ loaded: false }, () => {
       if (!this.props.nextImg()) this.setState({ loaded: true });
@@ -59,7 +87,6 @@ export default class extends React.Component {
   }
 
   render() {
-    console.log(this.state.loaded);
     let imgClass = this.state.loaded ? "img-loaded" : "img-loading";
     let cardClass = this.state.loaded ? "card loaded" : "card loading";
     let backClass = this.state.loaded ? "back loaded" : "back loading";
@@ -108,12 +135,19 @@ export default class extends React.Component {
             <p>{this.props.meta}</p>
             <p>{this.props.dimensions}</p>
             {this.props.sold ? (
-              <p style={{ color: "red", fontStyle: "italic", fontWeight: "bold" }}>
+              <p
+                style={{
+                  color: "red",
+                  fontStyle: "italic",
+                  fontWeight: "bold",
+                }}
+              >
                 SOLD
               </p>
             ) : (
               <p>${this.props.price}</p>
             )}
+            {this.generateVendor(this.props.vendor)}
           </div>
         </div>
       </div>

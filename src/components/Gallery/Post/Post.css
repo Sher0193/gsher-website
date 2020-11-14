@@ -123,6 +123,18 @@
   cursor: pointer;
 }
 
+.post-container .vendor a {
+  color: black;
+  text-decoration: underline;
+  font-weight: 300;
+  font-size: 15px;
+  transition: color ease 0.2s;
+}
+
+.post-container .vendor a:hover {
+  color: grey;
+}
+
 /*Margin by pixel:*/
 @media screen and (max-width: 720px) {
   .post-container .img-container .main-img-container img {

@@ -6,7 +6,7 @@ import sig from "../../../img/website-logo.png";
 // const top = { top: "-50px" };
 const scrolled = { top: "0px" };
 
-class Navbar extends React.Component {
+export default class Navbar extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -81,4 +81,3 @@ class Navbar extends React.Component {
     );
   }
 }
-export default Navbar;

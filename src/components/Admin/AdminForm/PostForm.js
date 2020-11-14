@@ -13,6 +13,7 @@ import {
   getPost,
   getCategories,
   getCategoriesByPost,
+  getVendors,
 } from "../../../utils/Api";
 
 const animatedComponents = makeAnimated();
@@ -36,6 +37,8 @@ export default class PostForm extends React.Component {
       editForm: false,
       catValues: null,
       featuredValue: null,
+      vendData: null,
+      vendValue: -1,
     };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -56,6 +59,8 @@ export default class PostForm extends React.Component {
     }
     if (this.state.catData === null) {
       this.apiCategories();
+    } else if (this.state.vendData === null) {
+      this.apiVendors();
     }
   }
   async apiCategories() {
@@ -73,6 +78,24 @@ export default class PostForm extends React.Component {
       });
     } else {
       this.setState({ catData: [] });
+    }
+  }
+
+  async apiVendors() {
+    let result = await getVendors();
+    if (result !== null && result.success) {
+      let options = [];
+      for (let i = 0; i < result.data.length; i++) {
+        options.push({
+          value: result.data[i].id,
+          label: result.data[i].vendor_name,
+        });
+      }
+      this.setState({
+        vendData: options,
+      });
+    } else {
+      this.setState({ vendData: [] });
     }
   }
 
@@ -106,7 +129,16 @@ export default class PostForm extends React.Component {
       dateValue: data.date_painted.substring(0, 10),
       catValues: values,
       featuredValue: data.featured,
+      vendValue: data.vendor_id,
     });
+  }
+
+  generateVendorOptions(data) {
+    return data.map((p, k) => (
+      <option key={k} value={p.value}>
+        {p.label}
+      </option>
+    ));
   }
 
   handleChange(event) {
@@ -141,6 +173,9 @@ export default class PostForm extends React.Component {
         }
         this.setState({ fileName: this.fileInput.current.files[0].name });
         break;
+      case "vendor":
+        this.setState({ vendValue: event.target.value });
+        break;
       default:
         break;
     }
@@ -173,7 +208,7 @@ export default class PostForm extends React.Component {
         filename = uploadResult.filename;
         let deleteResult = await deleteImage(this.state.editFilename);
         if (!deleteResult) {
-          alert("Issue deleting old image.");
+          alert("Issue deleting old image. Contact admin.");
         }
       }
       const params = new URLSearchParams(this.props.params);
@@ -188,7 +223,8 @@ export default class PostForm extends React.Component {
         this.state.dateValue,
         filename,
         catValues,
-        this.state.featuredValue
+        this.state.featuredValue,
+        this.state.vendValue
       );
       if (!updateResult) {
         alert("Issue updating database entry.");
@@ -220,7 +256,8 @@ export default class PostForm extends React.Component {
         this.state.soldValue === "true" ? 1 : 0,
         this.state.dateValue,
         filename,
-        catValues
+        catValues,
+        this.state.vendValue
       );
       if (!createResult) {
         alert("Issue creating database entry.");
@@ -240,16 +277,16 @@ export default class PostForm extends React.Component {
       return <Redirect to={this.state.redirect} />;
     }
     const isEnabled =
-      (this.fileInput.current !== null &&
-        this.fileInput.current.files.length > 0 &&
-        this.state.nameValue.length > 0 &&
-        this.state.dimValue.length > 0 &&
-        this.state.metaValue.length > 0 &&
-        this.state.priceValue.length > 0 &&
-        this.state.dateValueNumeric > 0 &&
-        !this.state.btnDisabled) ||
-      this.state.editForm;
-    if (this.state.catData !== null) {
+      ((this.fileInput.current !== null &&
+        this.fileInput.current.files.length > 0) ||
+        this.state.editForm) &&
+      this.state.nameValue.length > 0 &&
+      this.state.dimValue.length > 0 &&
+      this.state.metaValue.length > 0 &&
+      this.state.priceValue > 0 &&
+      this.state.dateValueNumeric > 0 &&
+      !this.state.btnDisabled;
+    if (this.state.catData !== null && this.state.vendData !== null) {
       return (
         <div className="postForm-container">
           {!this.state.editForm ? "NEW POST" : "EDIT POST"}
@@ -281,15 +318,6 @@ export default class PostForm extends React.Component {
                 onChange={this.handleChange}
               />
             </label>
-            <label>Category:</label>
-            <Select
-              onChange={this.handleMultiSelectChange}
-              value={this.state.catValues}
-              className="admin-react-select"
-              isMulti={true}
-              options={this.state.catData}
-              components={animatedComponents}
-            />
             <label>
               Price ($CAD):
               <input
@@ -344,6 +372,26 @@ export default class PostForm extends React.Component {
               ref={this.fileInput}
               onChange={this.handleChange}
             />
+            <label>Category:</label>
+            <Select
+              onChange={this.handleMultiSelectChange}
+              value={this.state.catValues}
+              className="admin-react-select"
+              isMulti={true}
+              options={this.state.catData}
+              components={animatedComponents}
+            />
+            <label>Vendor:</label>
+            <select
+              name="vendor"
+              value={this.state.vendValue}
+              onChange={this.handleChange}
+            >
+              <option selected value={-1}>
+                Select a vendor
+              </option>
+              {this.generateVendorOptions(this.state.vendData)}
+            </select>
             <button disabled={!isEnabled} className={"submitBtn"} type="submit">
               Submit
             </button>

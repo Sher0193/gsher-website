@@ -12,6 +12,8 @@ import {
   createCategory,
   deleteCategory,
   updateCategory,
+  getVendors,
+  deleteVendor,
 } from "../../../utils/Api";
 
 import "./Posts.css";
@@ -22,6 +24,7 @@ export default class Posts extends React.Component {
     this.state = {
       postData: null,
       catData: null,
+      vendData: null,
     };
   }
   componentDidMount() {
@@ -36,6 +39,8 @@ export default class Posts extends React.Component {
       this.apiPosts();
     } else if (this.state.catData === null) {
       this.apiCategories();
+    } else if (this.state.vendData === null) {
+      this.apiVendors();
     }
   }
   async apiPosts() {
@@ -54,6 +59,15 @@ export default class Posts extends React.Component {
       return;
     }
     this.setState({ catData: [] });
+  }
+
+  async apiVendors() {
+    let result = await getVendors();
+    if (result && result.success) {
+      this.setState({ vendData: result.data });
+      return;
+    }
+    this.setState({ vendData: [] });
   }
 
   async createCategory() {
@@ -99,6 +113,15 @@ export default class Posts extends React.Component {
     }
   }
 
+  async deleteVendor(id) {
+    if (window.confirm("Do you wish to delete this vendor?")) {
+      let result = await deleteVendor(id);
+      if (result !== null && result.success) {
+        this.setState({ vendData: null });
+      }
+    }
+  }
+
   async toggleFeature(post) {
     let updateResult = await updatePost(
       post.id,
@@ -123,7 +146,8 @@ export default class Posts extends React.Component {
       <PostRow
         handleFeature={() => this.toggleFeature(p)}
         featured={p.featured}
-        key={p.id}
+        key={k}
+        index={k}
         postId={p.id}
         postName={p.name}
         image={p.link}
@@ -134,56 +158,114 @@ export default class Posts extends React.Component {
 
   generateCategoryRows(data) {
     return data.map((p, k) => (
-      <tr key={p.id}>
+      <tr className={k % 2 === 0 ? "tableRowOdd" : ""} key={p.id}>
         <td>{p.id}</td>
         <td>{p.category}</td>
         <td>
-          <button onClick={() => this.editCategory(p.id)}>Edit</button>
+          <div
+            className="warning-btn fbtn"
+            onClick={() => this.editCategory(p.id)}
+          >
+            Edit
+          </div>
         </td>
         <td>
-          <button onClick={() => this.deleteCategory(p.id)}>Delete</button>
+          <div
+            className="danger-btn fbtn"
+            onClick={() => this.deleteCategory(p.id)}
+          >
+            Delete
+          </div>
+        </td>
+      </tr>
+    ));
+  }
+
+  generateVendorRows(data) {
+    return data.map((p, k) => (
+      <tr className={k % 2 === 0 ? "tableRowOdd" : ""} key={p.id}>
+        <td>{p.id}</td>
+        <td>{p.vendor_name}</td>
+        <td>
+          <a
+            className="warning-btn fbtn"
+            href={"/admin/posts/vendors/edit?vendor=" + p.id}
+          >
+            Edit
+          </a>
+        </td>
+        <td>
+          <div
+            className="danger-btn fbtn"
+            onClick={() => this.deleteVendor(p.id)}
+          >
+            Delete
+          </div>
         </td>
       </tr>
     ));
   }
 
   render() {
-    if (this.state.postData !== null && this.state.catData !== null) {
+    if (
+      this.state.postData !== null &&
+      this.state.catData !== null &&
+      this.state.vendData !== null
+    ) {
       return (
         <div className="postsContainer">
-          <div className="tableContainer">
-            Categories:
-            <button onClick={() => this.createCategory()}>New Category</button>
-            <table>
-              <tbody>
-                <tr>
-                  <th>ID</th>
-                  <th>Category Name</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                </tr>
-                {this.generateCategoryRows(this.state.catData)}
-              </tbody>
-            </table>
-          </div>
-          <div className="tableContainer">
-            Posts:
-            <a href="/admin/posts/new" className="button">
-              New Post
-            </a>
-            <table>
-              <tbody>
-                <tr>
-                  <th>ID</th>
-                  <th>Painting Name</th>
-                  <th>Thumbnail</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                  <th>Feature</th>
-                </tr>
-                {this.generatePostRows(this.state.postData)}
-              </tbody>
-            </table>
+          <div className="tableFlex">
+            <div className="tableContainer" style={{ width: "50%" }}>
+              <div className="tableHeader">
+                <div className="tableHeading">Posts</div>
+                <a href="/admin/posts/new" className="okay-btn new-btn fbtn">
+                  New Post
+                </a>
+              </div>
+              <div className="tableContent">
+                <table>
+                  <tbody>{this.generatePostRows(this.state.postData)}</tbody>
+                </table>
+              </div>
+            </div>
+            <div className="topRow">
+              <div className="tableContainer">
+                <div className="tableHeader">
+                  <div className="tableHeading">Categories</div>
+                  <div
+                    className="okay-btn new-btn fbtn"
+                    onClick={() => this.createCategory()}
+                  >
+                    New Category
+                  </div>
+                </div>
+                <div className="tableContent">
+                  <table>
+                    <tbody>
+                      {this.generateCategoryRows(this.state.catData)}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className="tableContainer">
+                <div className="tableHeader">
+                  <div className="tableHeading">Vendors</div>
+                  <a
+                    href="/admin/posts/vendors/new"
+                    className="okay-btn new-btn fbtn"
+                  >
+                    New Vendor
+                  </a>
+                </div>
+                <div className="tableContent">
+                  <table>
+                    <tbody>
+                      {this.generateVendorRows(this.state.vendData)}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       );
