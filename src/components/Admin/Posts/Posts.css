@@ -34,6 +34,10 @@
   background: #d4d4d4;
 }
 
+.postsContainer .half-table {
+    max-height: 50%;
+}
+
 .postsContainer .tableHeader {
   width: 100%;
   display: flex;

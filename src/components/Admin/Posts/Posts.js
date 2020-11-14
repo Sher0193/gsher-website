@@ -229,7 +229,7 @@ export default class Posts extends React.Component {
               </div>
             </div>
             <div className="topRow">
-              <div className="tableContainer">
+              <div className="tableContainer half-table">
                 <div className="tableHeader">
                   <div className="tableHeading">Categories</div>
                   <div
@@ -247,7 +247,7 @@ export default class Posts extends React.Component {
                   </table>
                 </div>
               </div>
-              <div className="tableContainer">
+              <div className="tableContainer half-table">
                 <div className="tableHeader">
                   <div className="tableHeading">Vendors</div>
                   <a
