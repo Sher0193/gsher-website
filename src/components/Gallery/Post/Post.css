@@ -80,13 +80,17 @@
   justify-content: center;
   min-height: 100px;
   width: 100%;
+  max-width: 350px;
   margin: 25px 0 25px 0;
   text-align: left;
   color: black;
+/*  -moz-box-shadow: 3px 3px 15px rgba(10, 10, 10, 0.6);
+  -moz-box-shadow: 3px 3px 15px rgba(10, 10, 10, 0.6);
+  box-shadow: 3px 3px 15px rgba(10, 10, 10, 0.6);*/
 }
 
 .post-container .card .title-container {
-  margin: 0 15px 0 15px;
+  margin: 15px;
 }
 
 .post-container .card p {
