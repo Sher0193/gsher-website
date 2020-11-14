@@ -49,6 +49,9 @@ export default class PostForm extends React.Component {
     this.update();
   }
 
+  /**
+   * Update any missing category or vendor data, check parameters.
+   */
   update() {
     const params = new URLSearchParams(this.props.params);
     if (params.has("post")) {
@@ -63,6 +66,10 @@ export default class PostForm extends React.Component {
       this.apiVendors();
     }
   }
+
+  /**
+   * Query the api for categories, update state.
+   */
   async apiCategories() {
     let result = await getCategories();
     if (result !== null && result.success) {
@@ -81,6 +88,9 @@ export default class PostForm extends React.Component {
     }
   }
 
+  /**
+   * Query the api for vendors, update state.
+   */
   async apiVendors() {
     let result = await getVendors();
     if (result !== null && result.success) {
@@ -99,6 +109,9 @@ export default class PostForm extends React.Component {
     }
   }
 
+  /**
+   * Query the api for information on a post with matching id, update state (form values).
+   */
   async apiPost(id) {
     let postResult = await getPost(id);
     if (!postResult) {
@@ -133,6 +146,9 @@ export default class PostForm extends React.Component {
     });
   }
 
+  /**
+   * Generate option tags for vendors given information in state.
+   */
   generateVendorOptions(data) {
     return data.map((p, k) => (
       <option key={k} value={p.value}>
@@ -141,6 +157,9 @@ export default class PostForm extends React.Component {
     ));
   }
 
+  /**
+   * Handle all miscellaneous form state updating on change.
+   */
   handleChange(event) {
     if (event.target.type === "radio") {
       this.setState({ soldValue: event.target.value });
@@ -181,11 +200,17 @@ export default class PostForm extends React.Component {
     }
   }
 
+  /**
+   * Handle state updating on change for the React Select element.
+   */
   handleMultiSelectChange = (selectedOptions) => {
     this.setState({ catValues: selectedOptions });
     console.log(this.state.catValues);
   };
 
+  /**
+   * Handle submitting all form info to the api.
+   */
   async onSubmit(event) {
     event.preventDefault();
     this.setState({ btnDisabled: true });
@@ -266,7 +291,6 @@ export default class PostForm extends React.Component {
       }
       alert("Successfully added entry.");
       this.setState({
-        //redirect: "/admin/posts/edit?post=" + createResult.postData.id,
         redirect: "/admin/posts/",
       });
     }

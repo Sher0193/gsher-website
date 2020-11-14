@@ -17,6 +17,9 @@ export default class ContactForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  /**
+   * Handle updating state on all miscellaneous form element updating.
+   */
   handleChange = (event) => {
     switch (event.target.name) {
       case "name":
@@ -40,6 +43,10 @@ export default class ContactForm extends React.Component {
     }
   };
 
+  /**
+   * Handle submitting all form info to the server.
+   * In this case, info is used to send an email.
+   */
   async onSubmit(event) {
     event.preventDefault();
     this.setState({ disabled: true });
@@ -56,6 +63,7 @@ export default class ContactForm extends React.Component {
       this.setState({ disabled: false });
     }
   }
+
   render() {
     if (this.state.sent) {
       return (

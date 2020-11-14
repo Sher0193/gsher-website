@@ -16,6 +16,9 @@ export default class extends React.Component {
     this.setState({ loaded: true });
   }
 
+  /**
+   * Generate numbered page select buttons.
+   */
   generatePages(pages, page, endPage, click, defaultClass) {
     return pages(page, endPage).map((x) => (
       <div
@@ -33,6 +36,7 @@ export default class extends React.Component {
       </div>
     ));
   }
+
   render() {
     let defaultClass = this.state.loaded
       ? "pgnav-btn pgnav-btn-loaded"

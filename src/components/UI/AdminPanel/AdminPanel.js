@@ -7,6 +7,9 @@ import { logOut } from "../../../utils/Api";
 import config from "../../../config.json";
 
 export default class AdminPanel extends React.Component {
+  /**
+   * Log out the current user.
+   */
   async doLogout() {
     let result = await logOut();
 
@@ -15,6 +18,7 @@ export default class AdminPanel extends React.Component {
       UserStore.username = "";
     }
   }
+
   render() {
     return (
       <adminnav>

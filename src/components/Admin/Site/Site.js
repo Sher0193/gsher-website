@@ -26,6 +26,9 @@ export default class Site extends React.Component {
     this.loadText();
   }
 
+  /**
+   * Query the api for about and statement info, update state.
+   */
   async loadText() {
     let aboutContent = "";
     let statementContent = "";
@@ -43,16 +46,25 @@ export default class Site extends React.Component {
     });
   }
 
+  /**
+   * Handle updating state on "statement" form changes.
+   */
   handleStatementChange = (event) => {
     if (event.target.value.length > 6000) return;
     this.setState({ statementValue: event.target.value });
   };
 
+  /**
+   * Handle updating state on "about" form changes.
+   */
   handleAboutChange = (event) => {
     if (event.target.value.length > 6000) return;
     this.setState({ aboutValue: event.target.value });
   };
 
+  /**
+   * Submit information in "statement" form to the server.
+   */
   async statementSubmit(event) {
     event.preventDefault();
     let statement = this.state.statementValue;
@@ -65,6 +77,9 @@ export default class Site extends React.Component {
     alert("Updated artist statement.");
   }
 
+  /**
+   * Submit information in "about" form to the server.
+   */
   async aboutSubmit(event) {
     event.preventDefault();
     let about = this.state.aboutValue;

@@ -22,7 +22,6 @@ export default class About extends React.Component {
                 | <a href="mailto:greg.sherwood1@gmail.com">Email</a>
               </div>
             </div>
-
             <ContactForm />
           </div>
         </div>

@@ -16,6 +16,9 @@ export default class Statement extends React.Component {
     this.apiStatement();
   }
 
+  /**
+   * Query the api for "statement" information.
+   */
   async apiStatement() {
     let statementRes = await getStatement();
     if (statementRes !== null && statementRes.success) {
@@ -23,6 +26,9 @@ export default class Statement extends React.Component {
     }
   }
 
+  /**
+   * Generate a <p> line for every line in the passed array.
+   */
   generateStatementLines(data) {
     return data.map((p, k) => <p key={k}>{p}</p>);
   }

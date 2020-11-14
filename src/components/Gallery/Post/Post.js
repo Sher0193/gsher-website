@@ -1,18 +1,11 @@
 import React from "react";
 
 import "./Post.css";
-
 import config from "../../../config.json";
-import Spinner from "../../../components/UI/Spinner/Spinner";
 
+import Spinner from "../../../components/UI/Spinner/Spinner";
 import leftArrow from "../../../img/left-arrow.svg";
 import rightArrow from "../../../img/right-arrow.svg";
-
-// const scrollToRef = (ref) => window.scrollTo({
-//       top: ref.current.offsetTop,
-//       left: 0,
-//       behavior: "smooth",
-//   });
 
 export default class extends React.Component {
   constructor(props) {
@@ -23,26 +16,11 @@ export default class extends React.Component {
     this.imgRef = React.createRef();
   }
 
-  componentDidMount() {
-    //           window.scrollTo({
-    //       top: 0,
-    //       left: 0,
-    //       behavior: "smooth",
-    //   });
-    //       scrollToRef(this.imgRef);
-  }
-
-  componentDidUpdate() {
-    //         window.scrollTo({
-    //       top: 0,
-    //       left: 0,
-    //       behavior: "smooth",
-    //     });
-    //       scrollToRef(this.imgRef);
-  }
-
+  /**
+   * Generate block for vendor information.
+   */
   generateVendor(vendor) {
-    if (!vendor) {
+    if (!vendor || this.props.sold) {
       return "";
     }
     if (vendor.vendor_link) {
@@ -69,21 +47,22 @@ export default class extends React.Component {
     }
   }
 
+  /**
+   * Attempt to go to next image and track loading.
+   */
   async next() {
     this.setState({ loaded: false }, () => {
       if (!this.props.nextImg()) this.setState({ loaded: true });
     });
   }
 
+  /**
+   * Attempt to go to previous image and track loading.
+   */
   async prev() {
     this.setState({ loaded: false }, () => {
       if (!this.props.prevImg()) this.setState({ loaded: true });
     });
-  }
-
-  onLoad() {
-    // TODO: scrolling will not work on firefox on repeat requests due to caching. must be some fix
-    this.setState({ loaded: true });
   }
 
   render() {
@@ -117,7 +96,7 @@ export default class extends React.Component {
           <div className="main-img-container">
             <img
               className={imgClass}
-              onLoad={() => this.onLoad()}
+              onLoad={() => this.setState({ loaded: true })}
               src={config.server + "img/" + this.props.img}
               alt=""
             />

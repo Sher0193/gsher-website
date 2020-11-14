@@ -29,10 +29,6 @@ class Admin extends React.Component {
     }
   }
 
-  onSubmit() {}
-
-  /*<div className="container">Welcome, {UserStore.username}</div>*/
-
   render() {
     if (UserStore.loading) {
       return <div className="App">Loading, please wait...</div>;
@@ -90,4 +86,5 @@ class Admin extends React.Component {
     }
   }
 }
+
 export default observer(Admin);

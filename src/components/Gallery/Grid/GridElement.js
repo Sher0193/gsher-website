@@ -10,6 +10,7 @@ export default class GridElement extends React.Component {
       loaded: false,
     };
   }
+
   render() {
     let divClass = this.state.loaded
       ? "post post-loaded"

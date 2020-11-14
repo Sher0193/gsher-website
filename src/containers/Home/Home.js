@@ -1,19 +1,12 @@
 import React from "react";
 import "./Home.css";
 
-// import image1 from "../../img/asters-1.jpg";
-// import image2 from "../../img/plum-1.jpg";
-// import image3 from "../../img/apple-1.jpg";
-// import image4 from "../../img/winter-1.jpg";
-
 import Slider from "../../components/Slider/Slider";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import About from "../../components/Home/About/About";
 import Statement from "../../components/Home/Statement/Statement";
 import { featuredImages } from "../../utils/Api";
 import config from "../../config.json";
-
-// const images = [image1, image2, image3, image4];
 
 export default class Home extends React.Component {
   constructor() {
@@ -30,12 +23,18 @@ export default class Home extends React.Component {
     this.update();
   }
 
+  /**
+   * Query any missing data for featured images slider.
+   */
   update() {
     if (this.state.imgData === null) {
       this.apiImages();
     }
   }
 
+  /**
+   * Query the api for featured image information.
+   */
   async apiImages() {
     let imgData = [];
     let result = await featuredImages();
@@ -48,7 +47,7 @@ export default class Home extends React.Component {
       imgData: imgData,
     });
   }
-  //
+
   render() {
     if (this.state.imgData) {
       return (

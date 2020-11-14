@@ -13,37 +13,31 @@ export default class Navbar extends React.Component {
       scrollStyle: scrolled,
       menuClicked: false,
     };
-
-    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
   }
+
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  handleScroll = (e) => {
-    //if (path === "/") {
-    //     if (window.scrollY < 50) {
-    //       this.setState({ scrollStyle: scrolled });
-    //     } else if (window.scrollY > 50) {
-    //       this.setState({ scrollStyle: top });
-    //     }
-    //}
-  };
-
+  /**
+   * Toggle state's menuClicked.
+   */
   handleMenuClick = () => {
     let toggle = !this.state.menuClicked;
     this.setState({ menuClicked: toggle });
   };
 
+  /**
+   * Append "active" CSS class to given class list if state's menuClicked is true.
+   */
   handleClassName = (name) => {
     return name + (this.state.menuClicked ? " active" : "");
   };
 
-  //   <img src={sig} alt=""/>
   render() {
     return (
       <nav>

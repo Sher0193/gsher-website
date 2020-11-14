@@ -27,13 +27,18 @@ export default class Posts extends React.Component {
       vendData: null,
     };
   }
+
   componentDidMount() {
     this.update();
   }
+
   componentDidUpdate() {
     this.update();
   }
 
+  /**
+   * Query the api for any missing information.
+   */
   update() {
     if (this.state.postData === null) {
       this.apiPosts();
@@ -43,6 +48,10 @@ export default class Posts extends React.Component {
       this.apiVendors();
     }
   }
+
+  /**
+   * Query api for all posts, update state.
+   */
   async apiPosts() {
     let result = await getPosts();
     if (result !== null && result.success) {
@@ -52,6 +61,9 @@ export default class Posts extends React.Component {
     this.setState({ postData: [] });
   }
 
+  /**
+   * Query api for all categories, update state.
+   */
   async apiCategories() {
     let result = await getCategories();
     if (result && result.success) {
@@ -61,6 +73,9 @@ export default class Posts extends React.Component {
     this.setState({ catData: [] });
   }
 
+  /**
+   * Query api for all vendors, update state.
+   */
   async apiVendors() {
     let result = await getVendors();
     if (result && result.success) {
@@ -70,6 +85,9 @@ export default class Posts extends React.Component {
     this.setState({ vendData: [] });
   }
 
+  /**
+   * Prompt user for a name, use given name to create a new category.
+   */
   async createCategory() {
     let name = prompt("Please enter a category name.");
     let result = await createCategory(name);
@@ -78,6 +96,9 @@ export default class Posts extends React.Component {
     }
   }
 
+  /**
+   * Delete category at id if user agrees to prompt.
+   */
   async deleteCategory(id) {
     if (window.confirm("Do you wish to delete this category?")) {
       let result = await deleteCategory(id);
@@ -87,6 +108,9 @@ export default class Posts extends React.Component {
     }
   }
 
+  /**
+   * Prompt user for a new category name for category at id.
+   */
   async editCategory(id) {
     let name = prompt("Please enter a new category name.");
     let result = await updateCategory(id, name);
@@ -95,6 +119,9 @@ export default class Posts extends React.Component {
     }
   }
 
+  /**
+   * Delete post at id if user agrees to prompt.
+   */
   async deletePost(id) {
     if (window.confirm("Do you wish to delete this post?")) {
       let getResult = await getPost(id);
@@ -113,6 +140,9 @@ export default class Posts extends React.Component {
     }
   }
 
+  /**
+   * Delete vendor at id if user agrees to prompt.
+   */
   async deleteVendor(id) {
     if (window.confirm("Do you wish to delete this vendor?")) {
       let result = await deleteVendor(id);
@@ -122,6 +152,9 @@ export default class Posts extends React.Component {
     }
   }
 
+  /**
+   * Update given post, toggling the feature field.
+   */
   async toggleFeature(post) {
     let updateResult = await updatePost(
       post.id,
@@ -141,6 +174,9 @@ export default class Posts extends React.Component {
     this.setState({ postData: null });
   }
 
+  /**
+   * Generate a PostRow for each post in data.
+   */
   generatePostRows(data) {
     return data.map((p, k) => (
       <PostRow
@@ -156,6 +192,9 @@ export default class Posts extends React.Component {
     ));
   }
 
+  /**
+   * Generate a <tr> for each category in data.
+   */
   generateCategoryRows(data) {
     return data.map((p, k) => (
       <tr className={k % 2 === 0 ? "tableRowOdd" : ""} key={p.id}>
@@ -181,6 +220,9 @@ export default class Posts extends React.Component {
     ));
   }
 
+  /**
+   * Generate a <tr> for each vendor in data.
+   */
   generateVendorRows(data) {
     return data.map((p, k) => (
       <tr className={k % 2 === 0 ? "tableRowOdd" : ""} key={p.id}>
@@ -215,7 +257,7 @@ export default class Posts extends React.Component {
       return (
         <div className="postsContainer">
           <div className="tableFlex">
-            <div className="tableContainer" style={{ width: "50%" }}>
+            <div className="tableContainer posts-table">
               <div className="tableHeader">
                 <div className="tableHeading">Posts</div>
                 <a href="/admin/posts/new" className="okay-btn new-btn fbtn">

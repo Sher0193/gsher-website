@@ -16,6 +16,9 @@ export default class About extends React.Component {
     this.apiAbout();
   }
 
+  /**
+   * Query the api for "about" information, update state.
+   */
   async apiAbout() {
     let aboutRes = await getAbout();
     if (aboutRes !== null && aboutRes.success) {
@@ -23,6 +26,9 @@ export default class About extends React.Component {
     }
   }
 
+  /**
+   * Generate a <p> line for each line in the passed array.
+   */
   generateAboutLines(data) {
     return data.map((p, k) => <p key={k}>{p}</p>);
   }

@@ -24,6 +24,9 @@ export default class VendorForm extends React.Component {
     this.update();
   }
 
+  /**
+   * Check parameters for any instructions on any missing info.
+   */
   update() {
     const params = new URLSearchParams(this.props.params);
     if (params.has("vendor")) {
@@ -34,6 +37,9 @@ export default class VendorForm extends React.Component {
     }
   }
 
+  /**
+   * Query the api for information on a vendor with matching id, update state.
+   */
   async apiVendor(id) {
     let result = await getVendor(id);
     if (!result) {
@@ -51,6 +57,9 @@ export default class VendorForm extends React.Component {
     });
   }
 
+  /**
+   * Handle all miscellaneous state updating on form element change.
+   */
   handleChange(event) {
     switch (event.target.name) {
       case "name":
@@ -70,6 +79,9 @@ export default class VendorForm extends React.Component {
     }
   }
 
+  /**
+   * Handle submitting form info to the server.
+   */
   async onSubmit(event) {
     event.preventDefault();
     this.setState({ btnDisabled: true });

@@ -34,6 +34,9 @@ export default class Gallery extends React.Component {
     this.update();
   }
 
+  /**
+   * Query any missing data on posts, categories, and vendors.
+   */
   update() {
     if (this.state.catData === null) {
       this.apiCategories();
@@ -44,6 +47,54 @@ export default class Gallery extends React.Component {
     }
   }
 
+  /**
+   * Query the api for all posts given current tags, update state with returned information.
+   */
+  async apiPosts(tags) {
+    let result = await getPosts(true, null, tags);
+    if (result && result.success) {
+      this.setGallery(null, tags, result.data, null);
+    } else {
+      this.setState({ data: [] });
+    }
+  }
+
+  /**
+   * Query the api for all categories, update state with returned information.
+   */
+  async apiCategories() {
+    let result = await getCategories();
+    if (result && result.success) {
+      let options = [];
+      for (let i = 0; i < result.data.length; i++) {
+        options.push({
+          value: result.data[i].id,
+          label: result.data[i].category,
+        });
+      }
+      this.setState({
+        catData: options,
+      });
+    } else {
+      this.setState({ catData: [] });
+    }
+  }
+
+  /**
+   * Query the api for all vendors, update state with returned information.
+   */
+  async apiVendors() {
+    let result = await getVendors();
+    if (result && result.success) {
+      this.setState({ vendData: result.data });
+      return;
+    }
+    this.setState({ vendData: [] });
+  }
+
+  /**
+   * Update state variables based on information in the query parameters.
+   */
   checkParams() {
     const params = new URLSearchParams(this.props.location.search);
 
@@ -64,6 +115,9 @@ export default class Gallery extends React.Component {
     }
   }
 
+  /**
+   * Return information for a post with an id matching the given argument.
+   */
   getImgById(id) {
     for (let i = 0; i < this.state.data.length; i++) {
       if (this.state.data[i].id === id) return this.state.data[i].link;
@@ -71,51 +125,33 @@ export default class Gallery extends React.Component {
     return null;
   }
 
-  async apiPosts(tags) {
-    let result = await getPosts(true, null, tags);
-    if (result && result.success) {
-      this.setGallery(null, tags, result.data, null);
-    } else {
-      this.setState({ data: [] });
-    }
-  }
-
-  async apiCategories() {
-    let result = await getCategories();
-    if (result && result.success) {
-      let options = [];
-      for (let i = 0; i < result.data.length; i++) {
-        options.push({
-          value: result.data[i].id,
-          label: result.data[i].category,
-        });
-      }
-      this.setState({
-        catData: options,
-      });
-    } else {
-      this.setState({ catData: [] });
-    }
-  }
-
-  async apiVendors() {
-    let result = await getVendors();
-    if (result && result.success) {
-      this.setState({ vendData: result.data });
-      return;
-    }
-    this.setState({ vendData: [] });
-  }
-
-  getVendorById = (id) => {
+  /**
+   * Return information for a vendor with an id matching the given argument.
+   */
+  getVendorById(id) {
     for (let i = 0; i < this.state.vendData.length; i++) {
       if (id === this.state.vendData[i].id) {
         return this.state.vendData[i];
       }
     }
     return null;
-  };
+  }
 
+  /**
+   * Return information for a category with an id matching the given argument.
+   */
+  getCatdataById(id) {
+    for (let i = 0; i < this.state.catData.length; i++) {
+      if (this.state.catData[i].value === id) {
+        return this.state.catData[i];
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Push query parameters based on selected tags.
+   */
   handleMultiSelectChange = (selectedOptions) => {
     const params = new URLSearchParams(this.props.location.search);
     params.delete("page");
@@ -131,6 +167,9 @@ export default class Gallery extends React.Component {
     });
   };
 
+  /**
+   * Remove image query parameter, thus returning to gallery after checkParams executes.
+   */
   backToGallery = () => {
     const params = new URLSearchParams(this.props.location.search);
     params.delete("image");
@@ -140,6 +179,9 @@ export default class Gallery extends React.Component {
     });
   };
 
+  /**
+   * Attempt to move to the next image in the state "data" array.
+   */
   handleNextImg = () => {
     let idx = this.state.activeIndex + 1;
     let pageIdx = this.state.curPage - 1;
@@ -163,6 +205,9 @@ export default class Gallery extends React.Component {
     return true;
   };
 
+  /**
+   * Check if there is a subsequent image in the state "data" array.
+   */
   isNextActive = () => {
     let idx = this.state.activeIndex + 1;
     let pageIdx = this.state.curPage - 1;
@@ -172,6 +217,9 @@ export default class Gallery extends React.Component {
     );
   };
 
+  /**
+   * Attempt to move to the previous image in the state "data" array.
+   */
   handlePrevImg = () => {
     let idx = this.state.activeIndex - 1;
     let pageIdx = this.state.curPage - 1;
@@ -195,6 +243,9 @@ export default class Gallery extends React.Component {
     return true;
   };
 
+  /**
+   * Check if there is a preceding image in the state "data" array.
+   */
   isPrevActive = () => {
     let idx = this.state.activeIndex - 1;
     let pageIdx = this.state.curPage - 1;
@@ -204,6 +255,9 @@ export default class Gallery extends React.Component {
     );
   };
 
+  /**
+   * Push an "image" query parameter with the passed index.
+   */
   handlePostClick = (idx) => {
     const params = new URLSearchParams(this.props.location.search);
     params.set("image", idx);
@@ -213,16 +267,9 @@ export default class Gallery extends React.Component {
     });
   };
 
-  setIndex(idx) {
-    this.setState({ activeIndex: idx });
-  }
-
-  setImageLoaded(loaded) {
-    if (loaded !== this.state.imageLoaded) {
-      this.setState({ imageLoaded: loaded });
-    }
-  }
-
+  /**
+   * Push a "page" query parameter with passed page number.
+   */
   handlePageClick = (page) => {
     const params = new URLSearchParams(this.props.location.search);
     params.set("page", page);
@@ -232,15 +279,37 @@ export default class Gallery extends React.Component {
     });
   };
 
-  getCatdataById(id) {
-    for (let i = 0; i < this.state.catData.length; i++) {
-      if (this.state.catData[i].value === id) {
-        return this.state.catData[i];
-      }
+  /**
+   * Update state's imageLoaded with given boolean, only if there is a change to make.
+   */
+  setImageLoaded(loaded) {
+    if (loaded !== this.state.imageLoaded) {
+      this.setState({ imageLoaded: loaded });
     }
-    return null;
   }
 
+  /**
+   * Update state's activeIndex with given index.
+   */
+  setIndex(idx) {
+    this.setState({ activeIndex: idx });
+  }
+
+  /**
+   * Update state's page with given page number, scroll directly to top of screen.
+   */
+  setPage(page) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+    this.setState({ curPage: page });
+  }
+
+  /**
+   * Handle populating state variables to set all gallery info.
+   */
   setGallery(page, tags, data, idx) {
     window.scrollTo({
       top: 0,
@@ -268,15 +337,9 @@ export default class Gallery extends React.Component {
     });
   }
 
-  setPage(page) {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-    this.setState({ curPage: page });
-  }
-
+  /**
+   * Generate GridElements based on a given array of posts.
+   */
   generatePosts(data) {
     return data[this.state.curPage - 1].map((p, k) => (
       <GridElement
@@ -292,7 +355,6 @@ export default class Gallery extends React.Component {
       />
     ));
   }
-  //{this.generatePosts(this.state.data)}
 
   render() {
     if (this.state.activeIndex !== null && this.state.data !== null) {
