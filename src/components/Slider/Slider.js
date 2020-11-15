@@ -20,7 +20,6 @@ const Slider = (props) => {
   const { loaded, transition, activeIndex } = state;
 
   const autoPlayRef = useRef();
-  const resizeRef = useRef();
 
   useEffect(() => {
     autoPlayRef.current = nextSlide;
@@ -37,7 +36,6 @@ const Slider = (props) => {
       clearInterval(interval);
     };
   }, [props.autoPlay]);
-
 
   const nextSlide = (e) => {
     if (activeIndex === props.slides.length - 1) {
@@ -81,10 +79,7 @@ const Slider = (props) => {
 
   const clickDot = (index) => {
     console.log(index);
-    setState({ ...state,
-        activeIndex: index 
-        
-    });
+    setState({ ...state, activeIndex: index });
   };
 
   const onLoad = () => {
