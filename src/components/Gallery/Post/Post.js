@@ -31,7 +31,10 @@ export default class extends React.Component {
             <i>
               <a href={vendor.vendor_link}>{vendor.vendor_name}</a>
             </i>
-            <br></br><p className="phone">{vendor.vendor_phone ? " " + vendor.vendor_phone + "" : ""}</p>
+            <br></br>
+            <p className="phone">
+              {vendor.vendor_phone ? " " + vendor.vendor_phone + "" : ""}
+            </p>
           </p>
         </div>
       );
@@ -39,8 +42,10 @@ export default class extends React.Component {
       return (
         <div className="vendor">
           <p>
-            Available from <i>{vendor.vendor_name}</i>{" "}
-            <br></br><p className="phone">{vendor.vendor_phone ? " " + vendor.vendor_phone + "" : ""}</p>
+            Available from <i>{vendor.vendor_name}</i> <br></br>
+            <p className="phone">
+              {vendor.vendor_phone ? " " + vendor.vendor_phone + "" : ""}
+            </p>
           </p>
         </div>
       );

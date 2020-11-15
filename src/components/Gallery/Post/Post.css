@@ -84,7 +84,7 @@
   margin: 25px 0 25px 0;
   text-align: left;
   color: black;
-/*  -moz-box-shadow: 3px 3px 15px rgba(10, 10, 10, 0.6);
+  /*  -moz-box-shadow: 3px 3px 15px rgba(10, 10, 10, 0.6);
   -moz-box-shadow: 3px 3px 15px rgba(10, 10, 10, 0.6);
   box-shadow: 3px 3px 15px rgba(10, 10, 10, 0.6);*/
 }
@@ -99,7 +99,7 @@
   font-size: 15px;
 }
 .post-container .card p.phone {
-    font-weight: 400;
+  font-weight: 400;
 }
 .post-container .title {
   /*padding-top: 25px;*/

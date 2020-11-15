@@ -72,7 +72,11 @@ export default class ContactForm extends React.Component {
         </div>
       );
     } else {
-      let isEnabled = this.state.nameValue.length > 0 && this.state.emailValue.length > 0 && this.state.subjectValue.length > 0 && !this.state.disabled;
+      let isEnabled =
+        this.state.nameValue.length > 0 &&
+        this.state.emailValue.length > 0 &&
+        this.state.subjectValue.length > 0 &&
+        !this.state.disabled;
       return (
         <form name="contact-form" onSubmit={this.onSubmit}>
           <label>
