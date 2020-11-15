@@ -14,18 +14,16 @@ const getWidth = () => window.innerWidth;
 const Slider = (props) => {
   const [state, setState] = useState({
     activeIndex: 0,
-    translate: 0,
     transition: 0.45,
     loaded: false,
   });
-  const { loaded, translate, transition, activeIndex } = state;
+  const { loaded, transition, activeIndex } = state;
 
   const autoPlayRef = useRef();
   const resizeRef = useRef();
 
   useEffect(() => {
     autoPlayRef.current = nextSlide;
-    resizeRef.current = handleResize;
   });
 
   useEffect(() => {
@@ -33,28 +31,18 @@ const Slider = (props) => {
       autoPlayRef.current();
     };
 
-    //     const resize = () => {
-    //       resizeRef.current();
-    //     };
-
     const interval = setInterval(play, props.autoPlay * 1000);
-    //const onResize = window.addEventListener("resize", resize);
 
     return () => {
       clearInterval(interval);
-      //window.removeEventListener("resize", onResize);
     };
   }, [props.autoPlay]);
 
-  const handleResize = () => {
-    setState({ ...state, activeIndex: 0, translate: 0, transition: 0.45 });
-  };
 
   const nextSlide = (e) => {
     if (activeIndex === props.slides.length - 1) {
       return setState({
         ...state,
-        translate: 0,
         activeIndex: 0,
       });
     }
@@ -62,7 +50,6 @@ const Slider = (props) => {
     setState({
       ...state,
       activeIndex: activeIndex + 1,
-      translate: (activeIndex + 1) * getWidth(),
     });
   };
 
@@ -94,7 +81,10 @@ const Slider = (props) => {
 
   const clickDot = (index) => {
     console.log(index);
-    setState({ activeIndex: index });
+    setState({ ...state,
+        activeIndex: index 
+        
+    });
   };
 
   const onLoad = () => {
@@ -108,7 +98,6 @@ const Slider = (props) => {
     <div css={SliderCSS}>
       <a href="/gallery">
         <SliderContent
-          translate={translate}
           transition={transition}
           width={getWidth() * props.slides.length}
         >
@@ -137,15 +126,6 @@ const Slider = (props) => {
     </div>
   );
 };
-
-/*{!props.autoPlay && (
-        <>
-          <Arrow direction="left" handleClick={prevSlide} />
-          <Arrow direction="right" handleClick={nextSlide} />
-        </>
-      )}
-
-      <Dots slides={props.slides} activeIndex={activeIndex} />*/
 
 Slider.defaultProps = {
   slides: [],
