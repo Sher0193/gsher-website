@@ -29,7 +29,7 @@ export default class extends React.Component {
           <p>
             Available from{" "}
             <i>
-              <a href={vendor.vendor_link}>{vendor.vendor_name}</a>
+              <a href={vendor.vendor_link} target="_blank" rel="noopener noreferrer">{vendor.vendor_name}</a>
             </i>
             <br></br>
             <p className="phone">

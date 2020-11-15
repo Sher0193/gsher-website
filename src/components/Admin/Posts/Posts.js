@@ -90,6 +90,8 @@ export default class Posts extends React.Component {
    */
   async createCategory() {
     let name = prompt("Please enter a category name.");
+    if (name === null)
+        return;
     let result = await createCategory(name);
     if (result !== null && result.success) {
       this.setState({ catData: null });
