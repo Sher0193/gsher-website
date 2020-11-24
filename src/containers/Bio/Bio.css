@@ -1,6 +1,6 @@
 .bio-container {
   background-color: #d4d4d4;
-  min-height: 100vh;
+  min-height: calc(100vh - 62px);
   #padding-bottom: 75px;
   position: relative;
   background-position: center;
