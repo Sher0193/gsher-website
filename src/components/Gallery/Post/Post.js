@@ -118,20 +118,22 @@ export default class extends React.Component {
             <div className="title">{'"' + this.props.title + '"'}</div>
             <p>{this.props.meta}</p>
             <p>{this.props.dimensions}</p>
-            {this.props.sold ? (
-              <p
-                style={{
-                  color: "red",
-                  fontStyle: "italic",
-                  fontWeight: "bold",
-                }}
-              >
-                SOLD
-              </p>
-            ) : (
-              <p>${this.props.price}</p>
-            )}
-            {this.generateVendor(this.props.vendor)}
+            <div className="card-details">
+                {this.props.sold ? (
+                <p
+                    style={{
+                    color: "red",
+                    fontStyle: "italic",
+                    fontWeight: "bold",
+                    }}
+                >
+                    SOLD
+                </p>
+                ) : (
+                <p>${this.props.price}</p>
+                )}
+                {this.generateVendor(this.props.vendor)}
+            </div>
           </div>
         </div>
       </div>

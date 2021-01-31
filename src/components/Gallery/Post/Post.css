@@ -84,8 +84,6 @@
   margin: 25px 0 25px 0;
   text-align: left;
   color: black;
-  border-left: 3px solid;
-  border-color: black;
   background-color: white;
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
@@ -104,12 +102,17 @@
 
 .post-container .card .title-container {
   margin: 15px;
+  font-size: 15px;
+}
+
+.post-container .card .card-details {
+    margin-top: 5px;
+    font-size: 12px;
 }
 
 .post-container .card p {
   margin: 0;
   font-weight: 300;
-  font-size: 15px;
 }
 .post-container .card p.phone {
   font-weight: 400;
@@ -147,13 +150,13 @@
   color: black;
   text-decoration: underline;
   font-weight: 300;
-  font-size: 15px;
   transition: color ease 0.2s;
 }
 
 .post-container .vendor a:hover {
   color: grey;
 }
+
 
 /*Margin by pixel:*/
 @media screen and (max-width: 720px) {
