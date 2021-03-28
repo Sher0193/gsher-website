@@ -11,7 +11,7 @@ export default class About extends React.Component {
         <div className="contact">
           <div className="form">
             <div className="heading-container">
-              <div className="contact-title">GET IN TOUCH</div>
+              <h1 className="contact-title">GET IN TOUCH</h1>
               <div className="contact-subtitle">
                 Contact me for more information about my work.
               </div>
