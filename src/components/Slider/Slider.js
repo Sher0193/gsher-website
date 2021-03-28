@@ -91,7 +91,7 @@ const Slider = (props) => {
 
   return (
     <div css={SliderCSS}>
-      <a href="/gallery">
+      <a href="/gallery" aria-label="gallery">
         <SliderContent
           transition={transition}
           width={getWidth() * props.slides.length}
