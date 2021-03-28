@@ -122,6 +122,7 @@
   font-weight: 500;
   font-size: large;
   font-style: italic;
+  margin: 0;
 }
 
 .post-container .loading {
@@ -139,6 +140,7 @@
   width: auto;
   padding-left: 15px;
   font-size: medium;
+  color: #565656;
 }
 
 .back:hover {

@@ -121,14 +121,14 @@ export default class extends React.Component {
         </div>
         <div className={cardClass}>
           <div className="title-container">
-            <div className="title">{'"' + this.props.title + '"'}</div>
+            <h1 className="title">{'"' + this.props.title + '"'}</h1>
             <p>{this.props.meta}</p>
             <p>{this.props.dimensions}</p>
             <div className="card-details">
               {this.props.sold ? (
                 <p
                   style={{
-                    color: "red",
+                    color: "#eb0000",
                     fontStyle: "italic",
                     fontWeight: "bold",
                   }}
