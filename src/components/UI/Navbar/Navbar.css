@@ -53,10 +53,6 @@ nav .menu {
   justify-content: space-between;
   align-items: center;
 }
-nav .menu li a {
-  display: block;
-  padding: 15px 5px;
-}
 nav .menu .logo a {
   padding: 0;
   display: flex;
@@ -121,17 +117,21 @@ nav .burger.active span:nth-child(3) {
   transform: translateY(-5px) rotate(-45deg);
 }
 
-nav .item.button {
+nav .menu li .item.button {
   order: 2;
 }
-nav .item {
+nav .menu .menu-item {
   order: 3;
   width: 100%;
   text-align: center;
   display: none;
+  justify-content: center;
 }
-nav .active .item {
-  display: block;
+nav .menu .menu-item .item {
+  width: 100%;
+}
+nav .menu .active.menu-item {
+  display: flex;
 }
 
 /* Desktop menu */
@@ -148,10 +148,11 @@ nav .active .item {
     margin-right: auto;
     order: 0;
   }
-  nav .item {
+
+  nav .menu .menu-item {
     order: 1;
     position: relative;
-    display: block;
+    display: flex;
     width: auto;
   }
   nav .button {

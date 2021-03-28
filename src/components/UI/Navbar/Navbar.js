@@ -44,7 +44,7 @@ export default class Navbar extends React.Component {
         <ul className={this.handleClassName("menu")}>
           <li className={this.handleClassName("logo")}>
             {" "}
-            <a href="/">
+            <a className="logo-link" href="/">
               <img height="45" src={sig} alt="Greg Sherwood Canadian Painter" />
             </a>
           </li>
@@ -60,17 +60,17 @@ export default class Navbar extends React.Component {
               </div>
             </button>
           </li>
-          <li>
+          <li className={this.handleClassName("menu-item")}>
             <a className={this.handleClassName("item")} href="/gallery">
               Gallery
             </a>
           </li>
-          <li>
+          <li className={this.handleClassName("menu-item")}>
             <a className={this.handleClassName("item")} href="/bio">
               Bio
             </a>
           </li>
-          <li>
+          <li className={this.handleClassName("menu-item")}>
             <a className={this.handleClassName("item")} href="/contact">
               Contact
             </a>
