@@ -79,7 +79,7 @@
   align-items: center;
   justify-content: flex-start;
   min-height: 100px;
-  width: 100%;
+  width: calc(100% - 100px);
   max-width: 350px;
   margin: 25px 0 25px 0;
   text-align: left;
@@ -134,7 +134,7 @@
 }
 
 .back {
-  margin: 10px 0 10px 0;
+  padding: 25px 0;
   align-self: flex-start;
   display: inline-block;
   width: auto;
