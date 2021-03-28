@@ -29,7 +29,13 @@ export default class extends React.Component {
           <p>
             Available from{" "}
             <i>
-              <a href={vendor.vendor_link} target="_blank" rel="noopener noreferrer">{vendor.vendor_name}</a>
+              <a
+                href={vendor.vendor_link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {vendor.vendor_name}
+              </a>
             </i>
             <br></br>
             <p className="phone">
@@ -119,20 +125,20 @@ export default class extends React.Component {
             <p>{this.props.meta}</p>
             <p>{this.props.dimensions}</p>
             <div className="card-details">
-                {this.props.sold ? (
+              {this.props.sold ? (
                 <p
-                    style={{
+                  style={{
                     color: "red",
                     fontStyle: "italic",
                     fontWeight: "bold",
-                    }}
+                  }}
                 >
-                    SOLD
+                  SOLD
                 </p>
-                ) : (
+              ) : (
                 <p>${this.props.price}</p>
-                )}
-                {this.generateVendor(this.props.vendor)}
+              )}
+              {this.generateVendor(this.props.vendor)}
             </div>
           </div>
         </div>
