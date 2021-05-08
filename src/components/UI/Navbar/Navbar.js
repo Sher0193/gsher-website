@@ -52,6 +52,7 @@ export default class Navbar extends React.Component {
             <button
               onClick={this.handleMenuClick}
               className={this.handleClassName("icon")}
+              aria-label="menu"
             >
               <div className={this.handleClassName("burger")}>
                 <span></span>
