@@ -37,7 +37,7 @@ export default class About extends React.Component {
     if (this.state.aboutLines.length > 0) {
       return (
         <div className="text-break">
-          <h3 style={{ textAlign: "center" }}>About</h3>
+          <h2 style={{ textAlign: "center" }}>About</h2>
           {this.generateAboutLines(this.state.aboutLines)}
         </div>
       );
