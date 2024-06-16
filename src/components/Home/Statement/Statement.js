@@ -36,9 +36,11 @@ export default class Statement extends React.Component {
   render() {
     if (this.state.statementLines.length > 0) {
       return (
-        <div className="text-break">
-          <h2 style={{ textAlign: "center" }}>Statement</h2>
-          {this.generateStatementLines(this.state.statementLines)}
+        <div className="background-solid">
+          <div className="text-break">
+            <h2 style={{ textAlign: "center" }}>Statement</h2>
+            {this.generateStatementLines(this.state.statementLines)}
+          </div>
         </div>
       );
     } else {
