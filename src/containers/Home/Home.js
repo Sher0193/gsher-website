@@ -54,9 +54,6 @@ export default class Home extends React.Component {
         <div className="App">
           <div className="home">
             <div className="bgimg-1">
-              <div className="caption">
-                <span className="border"><h1>Greg Sherwood</h1></span>
-              </div>
               <Slider slides={this.state.imgData} autoPlay={10} />
             </div>
           </div>
